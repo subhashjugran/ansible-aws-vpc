@@ -1,0 +1,20 @@
+- hosts: localhost
+  connection: local
+  gather_facts: False
+  tasks:
+# Note: These examples do not set authentication details, see the AWS Guide for details.
+
+     - name: sample keypair for testing 
+       ec2_key:
+          name: my_keypair
+          region: us-east-2
+       register: keyout
+
+     - debug:
+        var: keyout
+
+     - name: store login key
+       copy:
+        content: "{{keyout.key.private_key}}"
+        dest: ./sample-key.pem
+       when: keyout.changed 
