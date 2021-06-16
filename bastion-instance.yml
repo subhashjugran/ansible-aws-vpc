@@ -1,11 +1,64 @@
 
-- name : Setup sunvprofile Bastion host
-  hosts: localhost
+#- name : Setup sunvprofile Bastion host
+- hosts: localhost
   connection: local
-  gather_facts: no
+  gather_facts: False
   tasks:
-     - name: Import VPC setup Variable
-       include_vars: vars/bastion_setup
+     - name: Import bastion setup Variable
+       include_vars: var/bastion_setup
 
-      - name: Import VPC setup Variable
-       include_vars: vars/bastion_setup
+     - name: Import VPC setup Variable
+       include_vars: var/output_vars
+
+
+     - name: sample keypair for testing
+       ec2_key:
+          name: my_keypair
+          region: us-east-2
+       register: keyout
+
+     - debug:
+        var: keyout
+
+     - name: store login key
+       copy:
+        content: "{{keyout.key.private_key}}"
+        dest: ./sunbastion-key.pem
+        mode: 0600
+       when: keyout.changed
+
+     - name: Create Sec group for bation host
+       ec2_group:
+          name: Bastion-host-sg
+          description: Allow port 22 from my laptop ip
+          region: "{{region}}"
+          vpc_id: "{{vpcid}}"
+          rules:
+             - proto: tcp
+               from_port: 22
+               to_port: 22
+               cidr_ip: "{{MYIP}}"
+       register: BastionSG_out
+
+
+     - name: Creation Bastion Host
+       ec2: 
+          key_name: my_keypair
+          region: "{{region}}"
+          instance_type: t2.micro
+          image: "{{bastion_ami}}"
+          wait: yes
+          wait_timeout: 300
+          instance_tags:
+               Name: "Bastion_host"
+               Project: sunprofile
+               owner: DevOps Team
+          exact_count: 1  # so that it create only one instance afte re-running script
+          count_tag:
+                Name: "Bastion_host"
+                Project: sunprofile
+                owner: DevOps Team
+          group_id: "{{BastionSG_out.group_id}}"
+          vpc_subnet_id: "{{pubsub1id}}"
+       register: Bastionhost_out
+
