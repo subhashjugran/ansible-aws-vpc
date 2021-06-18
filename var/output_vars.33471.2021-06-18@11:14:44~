@@ -7,6 +7,3 @@ prisub2id: subnet-064359df1036748b2
 prisub3id: subnet-08412a35c09eaec88
 igwid: igw-0cd7a7804d9a085f2
 pubRTid: rtb-034fe765ea9458007
-# BEGIN ANSIBLE MANAGED BLOCK
-BastionSGid: sg-0b39de4398b67c718 
-# END ANSIBLE MANAGED BLOCK

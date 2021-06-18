@@ -40,6 +40,9 @@
                cidr_ip: "{{MYIP}}"
        register: BastionSG_out
 
+     - debug: 
+         var: BastionSG_out
+
 
      - name: Creation Bastion Host
        ec2: 
@@ -62,5 +65,17 @@
                 owner: DevOps Team
           group_id: "{{BastionSG_out.group_id}}"
           vpc_subnet_id: "{{pubsub1id}}"
+          
        register: Bastionhost_out
 
+     - debug:
+          var: Bastionhost_out
+
+  ## blockinfile to copy the output into file for storing variable 
+     - name : insert/Update "BastionSGid" in var/vpc-output_vars
+       blockinfile:
+               path: var/output_vars
+               backup: yes
+               block: |
+                 BastionSGid: {{BastionSG_out.group_id}} 
+    

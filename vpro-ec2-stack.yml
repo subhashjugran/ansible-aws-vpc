@@ -1,0 +1,57 @@
+
+- name : setup sunprofile stack
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+     - name: Import VPC Variables
+       include_vars: var/vpc_setup
+  
+     - name: sunvprofile keypair
+       ec2_key:
+          name: sunstack
+          region: us-east-2
+       register: keyout
+
+     - debug:
+        var: keyout
+
+     - name: store login key
+       copy:
+        content: "{{keyout.key.private_key}}"
+        dest: ./sunstack-key.pem
+       when: keyout.changed
+
+     - name: Create security group for load Balancer
+       ec2_group:
+          name: vproELB-sg
+          description: Allow port 80 from anywhere and all port within sg
+          region: "{{region}}"
+          vpc_id: "{{vpcid}}"
+          rule: 
+            - proto: tcp
+              from_port: 80
+              to_port: 80
+              cidr_ip: 0.0.0.0/0
+       register: vproELB-sg_out
+
+     - name: Create security group for sunvprofile stack
+       ec2_group:
+          name: vproStack-sg
+          description: Allow port 80 from anywhere and all port within sg
+          region: "{{region}}"
+          vpc_id: "{{vpcid}}"
+          purge_rules: no
+          rule:
+            - proto: tcp
+              from_port: 80
+              to_port: 80
+              group_id: "{{vproELB-sg_out.group_id}}"
+
+            - proto: tcp
+              from_port: 22
+              to_port: 22
+              group_id: "{{BastionSGid}}"
+              
+       register: vproStack-sg_out
+
