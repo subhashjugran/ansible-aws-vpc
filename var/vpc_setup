@@ -25,3 +25,8 @@ zone3: us-east-2c
 
 state: present
 
+# Bastion host vars
+# ubuntu 20 image
+bastion_ami: ami-00399ec92321828f5
+region: us-east-2
+MYIP: 103.252.200.40/32
