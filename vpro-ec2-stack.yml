@@ -6,6 +6,8 @@
   tasks:
      - name: Import VPC Variables
        include_vars: var/vpc_setup
+     - name: Import other VPc variables
+       include_vars: var/output_vars
   
      - name: sunvprofile keypair
        ec2_key:
@@ -28,12 +30,12 @@
           description: Allow port 80 from anywhere and all port within sg
           region: "{{region}}"
           vpc_id: "{{vpcid}}"
-          rule: 
+          rules: 
             - proto: tcp
               from_port: 80
               to_port: 80
-              cidr_ip: 0.0.0.0/0
-       register: vproELB-sg_out
+              cidr_ip: 0.0.0.0/0    
+       register: vproELBSG_out
 
      - name: Create security group for sunvprofile stack
        ec2_group:
@@ -42,16 +44,28 @@
           region: "{{region}}"
           vpc_id: "{{vpcid}}"
           purge_rules: no
-          rule:
+          rules:
             - proto: tcp
               from_port: 80
               to_port: 80
-              group_id: "{{vproELB-sg_out.group_id}}"
+              group_id: "{{vproELBSG_out.group_id}}"
 
             - proto: tcp
               from_port: 22
               to_port: 22
               group_id: "{{BastionSGid}}"
               
-       register: vproStack-sg_out
-
+       register: vproStackSG_out
+     
+     - name: Update Security Group with its own sg id
+       ec2_group:
+           name: vproStack-sg
+           description: Allow port 22 from everywhere and all port within sg
+           region: "{{region}}"
+           vpc_id: "{{vpcid}}"
+ # purge_rule option to avoid any deletion and append the rules
+           purge_rules: no
+           rules: 
+             - proto: all
+               group_id : "{{vproStackSG_out.group_id}}"
+           
