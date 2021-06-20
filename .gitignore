@@ -1,1 +1,2 @@
-sunstack-key.pem
+*.pem
+*.sql

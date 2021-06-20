@@ -1,0 +1,17 @@
+2021-06-20 10:36:04,945 p=6673 u=root n=ansible | PLAY [Generate artifact, copy artifact & sql file to files directory] *************************************************
+2021-06-20 10:36:04,959 p=6673 u=root n=ansible | TASK [Gathering Facts] ************************************************************************************************
+2021-06-20 10:36:06,171 p=6673 u=root n=ansible | ok: [localhost]
+2021-06-20 10:36:06,187 p=6673 u=root n=ansible | TASK [Install  jdk, maven, git] ***************************************************************************************
+2021-06-20 10:36:12,389 p=6673 u=root n=ansible | ok: [localhost] => (item=git)
+2021-06-20 10:36:53,731 p=6673 u=root n=ansible | changed: [localhost] => (item=openjdk-8-jdk)
+2021-06-20 10:37:03,189 p=6673 u=root n=ansible | changed: [localhost] => (item=maven)
+2021-06-20 10:37:03,203 p=6673 u=root n=ansible | TASK [Clone source code from github] **********************************************************************************
+2021-06-20 10:37:07,247 p=6673 u=root n=ansible | changed: [localhost]
+2021-06-20 10:37:07,258 p=6673 u=root n=ansible | TASK [mvn install command to build artifact] **************************************************************************
+2021-06-20 10:37:53,360 p=6673 u=root n=ansible | changed: [localhost]
+2021-06-20 10:37:53,386 p=6673 u=root n=ansible | TASK [Copy artifacts to files directory] ******************************************************************************
+2021-06-20 10:37:54,579 p=6673 u=root n=ansible | changed: [localhost] => (item=/root/scripts/ansible-aws-vpc/provision-stack/Vprofile-repo/target/vprofile-v2.war)
+2021-06-20 10:37:54,589 p=6673 u=root n=ansible | TASK [Copy SQL file to files directory] *******************************************************************************
+2021-06-20 10:37:54,989 p=6673 u=root n=ansible | changed: [localhost]
+2021-06-20 10:37:55,004 p=6673 u=root n=ansible | PLAY RECAP ************************************************************************************************************
+2021-06-20 10:37:55,004 p=6673 u=root n=ansible | localhost                  : ok=6    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   

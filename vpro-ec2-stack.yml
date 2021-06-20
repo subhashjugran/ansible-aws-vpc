@@ -69,3 +69,109 @@
              - proto: all
                group_id : "{{vproStackSG_out.group_id}}"
            
+     - name: Creation Nginx Host
+       ec2:
+ #         key_name: my_keypair
+ #         Using the exiting keypair for easy setup.
+          key_name: sunstack
+          region: "{{region}}"
+          instance_type: t2.micro
+          image: "{{bastion_ami}}"
+          wait: yes
+          wait_timeout: 300
+          instance_tags:
+               Name: "web01"
+               Project: sunprofile
+               owner: DevOps Team
+          exact_count: 1  # so that it create only one instance afte re-running script
+          count_tag:
+                Name: "web01"
+                Project: sunprofile
+                owner: DevOps Team
+          group_id: "{{vproStackSG_out.group_id}}"
+          vpc_subnet_id: "{{prisub1id}}"
+
+       register: web01_out
+
+     - name: Creation mysql  Host
+       ec2:
+ #         key_name: my_keypair
+ #         Using the exiting keypair for easy setup.
+          key_name: sunstack
+          region: "{{region}}"
+          instance_type: t2.micro
+          image: "{{bastion_ami}}"
+          wait: yes
+          wait_timeout: 300
+          instance_tags:
+               Name: "db01"
+               Project: sunprofile
+               owner: DevOps Team
+          exact_count: 1  # so that it create only one instance afte re-running script
+          count_tag:
+                Name: "db01"
+                Project: sunprofile
+                owner: DevOps Team
+          group_id: "{{vproStackSG_out.group_id}}"
+          vpc_subnet_id: "{{prisub1id}}"
+
+       register: db01_out
+
+     - debug:
+           var: db01_out
+
+
+  # Creation of Load balancer in public subnet 
+
+     - local_action:
+              module: ec2_elb_lb
+              name: "sunvprofile-elb"
+              region: "{{region}}"
+              state: present
+              instance_ids:
+                 - "{{ web01_out.tagged_instances[0].id}}"
+              purge_instance_ids: true
+              security_group_ids: "{{ vproELBSG_out.group_id}}"   
+              subnets:
+                 - "{{ pubsub1id }}" 
+                 - "{{ pubsub2id }}"
+ #               - "{{ pubsub3id }}"
+              listeners:
+                 - protocol: http 
+                   load_balancer_port: 80
+                   instance_port: 80
+
+     - name: insert/vupdate hosts Ips and name in file provision stack
+       blockinfile:
+                  path: provision-stack/group_vars/hostip
+                  block: |
+                     web01_ip: {{web01_out.tagged_instances[0].private_ip}}
+                     db01_ip: {{db01_out.tagged_instances[0].private_ip}}
+
+     - name: copy login key to provision stack inventory
+       copy:
+            src: sunstack-key.pem
+            dest: provision-stack/sunstack-key.pem
+            mode: '0400'
+
+     - name: Insert/Update inventory file provision-stack/inventory
+       blockinfile: 
+             path: provision-stack/inventory-vpro
+             block: |
+               web01 ansible_host={{ web01_out.tagged_instances[0].private_ip }}
+               db01 ansible_host={{ db01_out.tagged_instances[0].private_ip }}
+             
+               [websrvgrp]
+               web01
+
+               [dbsrvgrp]
+               db01
+
+
+               [stack_inst:children]
+               websrvgrp
+               dbsrvgrp
+
+               [stack_inst:vars]
+               ansible_user=ubuntu
+               ansible_ssh_private_key_file=sunstack-key.pem
