@@ -15,3 +15,779 @@
 2021-06-20 10:37:54,989 p=6673 u=root n=ansible | changed: [localhost]
 2021-06-20 10:37:55,004 p=6673 u=root n=ansible | PLAY RECAP ************************************************************************************************************
 2021-06-20 10:37:55,004 p=6673 u=root n=ansible | localhost                  : ok=6    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2021-06-21 04:48:58,819 p=990 u=root n=ansible | PLAY [Generate artifact, copy artifact & sql file to files directory] **********************************
+2021-06-21 04:48:58,850 p=990 u=root n=ansible | TASK [Gathering Facts] *********************************************************************************
+2021-06-21 04:49:00,068 p=990 u=root n=ansible | ok: [localhost]
+2021-06-21 04:49:00,084 p=990 u=root n=ansible | TASK [Install  jdk, maven, git] ************************************************************************
+2021-06-21 04:49:06,912 p=990 u=root n=ansible | ok: [localhost] => (item=git)
+2021-06-21 04:49:08,694 p=990 u=root n=ansible | ok: [localhost] => (item=openjdk-8-jdk)
+2021-06-21 04:49:10,473 p=990 u=root n=ansible | ok: [localhost] => (item=maven)
+2021-06-21 04:49:10,484 p=990 u=root n=ansible | TASK [Clone source code from github] *******************************************************************
+2021-06-21 04:49:11,303 p=990 u=root n=ansible | ok: [localhost]
+2021-06-21 04:49:11,313 p=990 u=root n=ansible | TASK [mvn install command to build artifact] ***********************************************************
+2021-06-21 04:49:11,328 p=990 u=root n=ansible | skipping: [localhost]
+2021-06-21 04:49:11,338 p=990 u=root n=ansible | TASK [Copy artifacts to files directory] ***************************************************************
+2021-06-21 04:49:12,574 p=990 u=root n=ansible | ok: [localhost] => (item=/root/scripts/ansible-aws-vpc/provision-stack/Vprofile-repo/target/vprofile-v2.war)
+2021-06-21 04:49:12,584 p=990 u=root n=ansible | TASK [Copy SQL file to files directory] ****************************************************************
+2021-06-21 04:49:13,022 p=990 u=root n=ansible | ok: [localhost]
+2021-06-21 04:49:13,039 p=990 u=root n=ansible | PLAY [Set host to ip mapping in /etc/hosts file of all the instances in the stack] *********************
+2021-06-21 04:49:13,043 p=990 u=root n=ansible | TASK [Gathering Facts] *********************************************************************************
+2021-06-21 04:49:17,193 p=990 u=root n=ansible | fatal: [cntl]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ssh: Could not resolve hostname cntl: Temporary failure in name resolution", "unreachable": true}
+2021-06-21 04:49:17,721 p=990 u=root n=ansible | ok: [mc01]
+2021-06-21 04:49:17,767 p=990 u=root n=ansible | ok: [rmq01]
+2021-06-21 04:49:17,770 p=990 u=root n=ansible | ok: [web01]
+2021-06-21 04:49:17,776 p=990 u=root n=ansible | ok: [app01]
+2021-06-21 04:49:19,620 p=990 u=root n=ansible | ok: [db01]
+2021-06-21 04:49:19,637 p=990 u=root n=ansible | TASK [Import VPC setup Variable] ***********************************************************************
+2021-06-21 04:49:19,685 p=990 u=root n=ansible | fatal: [web01]: FAILED! => {"ansible_facts": {}, "ansible_included_var_files": [], "changed": false, "message": "Could not find or access 'group_vars/hostsip'\nSearched in:\n\t/root/scripts/ansible-aws-vpc/provision-stack/vars/group_vars/hostsip\n\t/root/scripts/ansible-aws-vpc/provision-stack/group_vars/hostsip\n\t/root/scripts/ansible-aws-vpc/provision-stack/vars/group_vars/hostsip\n\t/root/scripts/ansible-aws-vpc/provision-stack/group_vars/hostsip on the Ansible Controller.\nIf you are using a module and expect the file to exist on the remote, see the remote_src option"}
+2021-06-21 04:49:19,705 p=990 u=root n=ansible | fatal: [app01]: FAILED! => {"ansible_facts": {}, "ansible_included_var_files": [], "changed": false, "message": "Could not find or access 'group_vars/hostsip'\nSearched in:\n\t/root/scripts/ansible-aws-vpc/provision-stack/vars/group_vars/hostsip\n\t/root/scripts/ansible-aws-vpc/provision-stack/group_vars/hostsip\n\t/root/scripts/ansible-aws-vpc/provision-stack/vars/group_vars/hostsip\n\t/root/scripts/ansible-aws-vpc/provision-stack/group_vars/hostsip on the Ansible Controller.\nIf you are using a module and expect the file to exist on the remote, see the remote_src option"}
+2021-06-21 04:49:19,729 p=990 u=root n=ansible | fatal: [rmq01]: FAILED! => {"ansible_facts": {}, "ansible_included_var_files": [], "changed": false, "message": "Could not find or access 'group_vars/hostsip'\nSearched in:\n\t/root/scripts/ansible-aws-vpc/provision-stack/vars/group_vars/hostsip\n\t/root/scripts/ansible-aws-vpc/provision-stack/group_vars/hostsip\n\t/root/scripts/ansible-aws-vpc/provision-stack/vars/group_vars/hostsip\n\t/root/scripts/ansible-aws-vpc/provision-stack/group_vars/hostsip on the Ansible Controller.\nIf you are using a module and expect the file to exist on the remote, see the remote_src option"}
+2021-06-21 04:49:19,730 p=990 u=root n=ansible | fatal: [mc01]: FAILED! => {"ansible_facts": {}, "ansible_included_var_files": [], "changed": false, "message": "Could not find or access 'group_vars/hostsip'\nSearched in:\n\t/root/scripts/ansible-aws-vpc/provision-stack/vars/group_vars/hostsip\n\t/root/scripts/ansible-aws-vpc/provision-stack/group_vars/hostsip\n\t/root/scripts/ansible-aws-vpc/provision-stack/vars/group_vars/hostsip\n\t/root/scripts/ansible-aws-vpc/provision-stack/group_vars/hostsip on the Ansible Controller.\nIf you are using a module and expect the file to exist on the remote, see the remote_src option"}
+2021-06-21 04:49:19,736 p=990 u=root n=ansible | fatal: [db01]: FAILED! => {"ansible_facts": {}, "ansible_included_var_files": [], "changed": false, "message": "Could not find or access 'group_vars/hostsip'\nSearched in:\n\t/root/scripts/ansible-aws-vpc/provision-stack/vars/group_vars/hostsip\n\t/root/scripts/ansible-aws-vpc/provision-stack/group_vars/hostsip\n\t/root/scripts/ansible-aws-vpc/provision-stack/vars/group_vars/hostsip\n\t/root/scripts/ansible-aws-vpc/provision-stack/group_vars/hostsip on the Ansible Controller.\nIf you are using a module and expect the file to exist on the remote, see the remote_src option"}
+2021-06-21 04:49:19,737 p=990 u=root n=ansible | PLAY RECAP *********************************************************************************************
+2021-06-21 04:49:19,738 p=990 u=root n=ansible | app01                      : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2021-06-21 04:49:19,738 p=990 u=root n=ansible | cntl                       : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2021-06-21 04:49:19,738 p=990 u=root n=ansible | db01                       : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2021-06-21 04:49:19,738 p=990 u=root n=ansible | localhost                  : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2021-06-21 04:49:19,738 p=990 u=root n=ansible | mc01                       : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2021-06-21 04:49:19,739 p=990 u=root n=ansible | rmq01                      : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2021-06-21 04:49:19,739 p=990 u=root n=ansible | web01                      : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2021-06-21 04:56:42,308 p=2295 u=root n=ansible | PLAY [Generate artifact, copy artifact & sql file to files directory] ******************************************************************************
+2021-06-21 04:56:42,333 p=2295 u=root n=ansible | TASK [Gathering Facts] *****************************************************************************************************************************
+2021-06-21 04:56:43,472 p=2295 u=root n=ansible | ok: [localhost]
+2021-06-21 04:56:43,487 p=2295 u=root n=ansible | TASK [Install  jdk, maven, git] ********************************************************************************************************************
+2021-06-21 04:56:45,455 p=2295 u=root n=ansible | ok: [localhost] => (item=git)
+2021-06-21 04:56:47,168 p=2295 u=root n=ansible | ok: [localhost] => (item=openjdk-8-jdk)
+2021-06-21 04:56:48,866 p=2295 u=root n=ansible | ok: [localhost] => (item=maven)
+2021-06-21 04:56:48,877 p=2295 u=root n=ansible | TASK [Clone source code from github] ***************************************************************************************************************
+2021-06-21 04:56:49,571 p=2295 u=root n=ansible | ok: [localhost]
+2021-06-21 04:56:49,580 p=2295 u=root n=ansible | TASK [mvn install command to build artifact] *******************************************************************************************************
+2021-06-21 04:56:49,595 p=2295 u=root n=ansible | skipping: [localhost]
+2021-06-21 04:56:49,604 p=2295 u=root n=ansible | TASK [Copy artifacts to files directory] ***********************************************************************************************************
+2021-06-21 04:56:50,474 p=2295 u=root n=ansible | ok: [localhost] => (item=/root/scripts/ansible-aws-vpc/provision-stack/Vprofile-repo/target/vprofile-v2.war)
+2021-06-21 04:56:50,483 p=2295 u=root n=ansible | TASK [Copy SQL file to files directory] ************************************************************************************************************
+2021-06-21 04:56:50,904 p=2295 u=root n=ansible | ok: [localhost]
+2021-06-21 04:56:50,920 p=2295 u=root n=ansible | PLAY [Set host to ip mapping in /etc/hosts file of all the instances in the stack] *****************************************************************
+2021-06-21 04:56:50,924 p=2295 u=root n=ansible | TASK [Gathering Facts] *****************************************************************************************************************************
+2021-06-21 04:56:55,062 p=2295 u=root n=ansible | fatal: [cntl]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ssh: Could not resolve hostname cntl: Temporary failure in name resolution", "unreachable": true}
+2021-06-21 04:56:55,316 p=2295 u=root n=ansible | ok: [mc01]
+2021-06-21 04:56:55,323 p=2295 u=root n=ansible | ok: [web01]
+2021-06-21 04:56:55,413 p=2295 u=root n=ansible | ok: [rmq01]
+2021-06-21 04:56:55,414 p=2295 u=root n=ansible | ok: [app01]
+2021-06-21 04:56:56,664 p=2295 u=root n=ansible | ok: [db01]
+2021-06-21 04:56:56,678 p=2295 u=root n=ansible | TASK [Import VPC setup Variable] *******************************************************************************************************************
+2021-06-21 04:56:56,724 p=2295 u=root n=ansible | ok: [web01]
+2021-06-21 04:56:56,744 p=2295 u=root n=ansible | ok: [app01]
+2021-06-21 04:56:56,769 p=2295 u=root n=ansible | ok: [rmq01]
+2021-06-21 04:56:56,772 p=2295 u=root n=ansible | ok: [mc01]
+2021-06-21 04:56:56,780 p=2295 u=root n=ansible | ok: [db01]
+2021-06-21 04:56:56,788 p=2295 u=root n=ansible | TASK [Update hosts file for all the hosts] *********************************************************************************************************
+2021-06-21 04:56:57,403 p=2295 u=root n=ansible | changed: [db01]
+2021-06-21 04:56:57,916 p=2295 u=root n=ansible | changed: [rmq01]
+2021-06-21 04:56:57,975 p=2295 u=root n=ansible | ok: [web01]
+2021-06-21 04:56:57,978 p=2295 u=root n=ansible | ok: [mc01]
+2021-06-21 04:56:57,983 p=2295 u=root n=ansible | ok: [app01]
+2021-06-21 04:56:58,000 p=2295 u=root n=ansible | PLAY [Setup Mysql with accounts db and remote login] ***********************************************************************************************
+2021-06-21 04:56:58,015 p=2295 u=root n=ansible | TASK [Installing Mysql Service and dependencies] ***************************************************************************************************
+2021-06-21 05:00:07,593 p=2295 u=root n=ansible | failed: [db01] (item=mysql-server) => {"ansible_loop_var": "item", "changed": false, "item": "mysql-server", "msg": "Failed to update apt cache: unknown reason"}
+2021-06-21 05:03:14,009 p=2295 u=root n=ansible | failed: [db01] (item=mysql-client) => {"ansible_loop_var": "item", "changed": false, "item": "mysql-client", "msg": "Failed to update apt cache: unknown reason"}
+2021-06-21 05:06:20,983 p=2295 u=root n=ansible | failed: [db01] (item=python-mysqldb) => {"ansible_loop_var": "item", "changed": false, "item": "python-mysqldb", "msg": "Failed to update apt cache: unknown reason"}
+2021-06-21 05:09:31,235 p=2295 u=root n=ansible | failed: [db01] (item=python3-mysqldb) => {"ansible_loop_var": "item", "changed": false, "item": "python3-mysqldb", "msg": "Failed to update apt cache: unknown reason"}
+2021-06-21 05:12:40,565 p=2295 u=root n=ansible | failed: [db01] (item=libmysqlclient-dev) => {"ansible_loop_var": "item", "changed": false, "item": "libmysqlclient-dev", "msg": "Failed to update apt cache: unknown reason"}
+2021-06-21 05:12:40,566 p=2295 u=root n=ansible | ...ignoring
+2021-06-21 05:12:40,576 p=2295 u=root n=ansible | TASK [Start and enable mysql service] **************************************************************************************************************
+2021-06-21 05:12:41,333 p=2295 u=root n=ansible | fatal: [db01]: FAILED! => {"changed": false, "msg": "Could not find the requested service mysql: host"}
+2021-06-21 05:12:41,334 p=2295 u=root n=ansible | PLAY RECAP *****************************************************************************************************************************************
+2021-06-21 05:12:41,334 p=2295 u=root n=ansible | app01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2021-06-21 05:12:41,335 p=2295 u=root n=ansible | cntl                       : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2021-06-21 05:12:41,335 p=2295 u=root n=ansible | db01                       : ok=4    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=1   
+2021-06-21 05:12:41,335 p=2295 u=root n=ansible | localhost                  : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2021-06-21 05:12:41,335 p=2295 u=root n=ansible | mc01                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2021-06-21 05:12:41,336 p=2295 u=root n=ansible | rmq01                      : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2021-06-21 05:12:41,336 p=2295 u=root n=ansible | web01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2021-06-21 05:40:48,098 p=3663 u=root n=ansible | PLAY [Generate artifact, copy artifact & sql file to files directory] *********************************************************************************************
+2021-06-21 05:40:48,111 p=3663 u=root n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************
+2021-06-21 05:40:49,198 p=3663 u=root n=ansible | ok: [localhost]
+2021-06-21 05:40:49,213 p=3663 u=root n=ansible | TASK [Install  jdk, maven, git] ***********************************************************************************************************************************
+2021-06-21 05:40:55,297 p=3663 u=root n=ansible | ok: [localhost] => (item=git)
+2021-06-21 05:40:57,081 p=3663 u=root n=ansible | ok: [localhost] => (item=openjdk-8-jdk)
+2021-06-21 05:40:58,775 p=3663 u=root n=ansible | ok: [localhost] => (item=maven)
+2021-06-21 05:40:58,786 p=3663 u=root n=ansible | TASK [Clone source code from github] ******************************************************************************************************************************
+2021-06-21 05:40:59,528 p=3663 u=root n=ansible | ok: [localhost]
+2021-06-21 05:40:59,538 p=3663 u=root n=ansible | TASK [mvn install command to build artifact] **********************************************************************************************************************
+2021-06-21 05:40:59,554 p=3663 u=root n=ansible | skipping: [localhost]
+2021-06-21 05:40:59,563 p=3663 u=root n=ansible | TASK [Copy artifacts to files directory] **************************************************************************************************************************
+2021-06-21 05:41:00,509 p=3663 u=root n=ansible | ok: [localhost] => (item=/root/scripts/ansible-aws-vpc/provision-stack/Vprofile-repo/target/vprofile-v2.war)
+2021-06-21 05:41:00,519 p=3663 u=root n=ansible | TASK [Copy SQL file to files directory] ***************************************************************************************************************************
+2021-06-21 05:41:00,948 p=3663 u=root n=ansible | ok: [localhost]
+2021-06-21 05:41:00,965 p=3663 u=root n=ansible | PLAY [Set host to ip mapping in /etc/hosts file of all the instances in the stack] ********************************************************************************
+2021-06-21 05:41:00,970 p=3663 u=root n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************
+2021-06-21 05:41:05,091 p=3663 u=root n=ansible | ok: [web01]
+2021-06-21 05:41:05,105 p=3663 u=root n=ansible | ok: [app01]
+2021-06-21 05:41:05,109 p=3663 u=root n=ansible | ok: [mc01]
+2021-06-21 05:41:05,113 p=3663 u=root n=ansible | ok: [rmq01]
+2021-06-21 05:41:05,125 p=3663 u=root n=ansible | fatal: [cntl]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ssh: Could not resolve hostname cntl: Temporary failure in name resolution", "unreachable": true}
+2021-06-21 05:41:06,696 p=3663 u=root n=ansible | ok: [db01]
+2021-06-21 05:41:06,710 p=3663 u=root n=ansible | TASK [Import VPC setup Variable] **********************************************************************************************************************************
+2021-06-21 05:41:06,761 p=3663 u=root n=ansible | ok: [web01]
+2021-06-21 05:41:06,779 p=3663 u=root n=ansible | ok: [app01]
+2021-06-21 05:41:06,804 p=3663 u=root n=ansible | ok: [rmq01]
+2021-06-21 05:41:06,805 p=3663 u=root n=ansible | ok: [mc01]
+2021-06-21 05:41:06,815 p=3663 u=root n=ansible | ok: [db01]
+2021-06-21 05:41:06,824 p=3663 u=root n=ansible | TASK [Update hosts file for all the hosts] ************************************************************************************************************************
+2021-06-21 05:41:07,439 p=3663 u=root n=ansible | ok: [db01]
+2021-06-21 05:41:07,929 p=3663 u=root n=ansible | ok: [mc01]
+2021-06-21 05:41:08,027 p=3663 u=root n=ansible | ok: [web01]
+2021-06-21 05:41:08,029 p=3663 u=root n=ansible | ok: [app01]
+2021-06-21 05:41:08,034 p=3663 u=root n=ansible | ok: [rmq01]
+2021-06-21 05:41:08,050 p=3663 u=root n=ansible | PLAY [Setup Mysql with accounts db and remote login] **************************************************************************************************************
+2021-06-21 05:41:08,065 p=3663 u=root n=ansible | TASK [Installing Mysql Service and dependencies] ******************************************************************************************************************
+2021-06-21 05:44:15,363 p=3663 u=root n=ansible | failed: [db01] (item=mysql-server) => {"ansible_loop_var": "item", "changed": false, "item": "mysql-server", "msg": "Failed to update apt cache: unknown reason"}
+2021-06-21 05:45:22,186 p=3663 u=root n=ansible | failed: [db01] (item=mysql-client) => {"ansible_loop_var": "item", "changed": false, "item": "mysql-client", "msg": "Failed to lock apt for exclusive operation: Failed to lock directory /var/lib/apt/lists/: E:Could not get lock /var/lib/apt/lists/lock. It is held by process 13181 (apt-get)"}
+2021-06-21 05:45:22,754 p=3663 u=root n=ansible | failed: [db01] (item=python-mysqldb) => {"ansible_loop_var": "item", "changed": false, "item": "python-mysqldb", "msg": "Failed to lock apt for exclusive operation: Failed to lock directory /var/lib/apt/lists/: E:Could not get lock /var/lib/apt/lists/lock. It is held by process 13181 (apt-get)"}
+2021-06-21 05:45:23,267 p=3663 u=root n=ansible | failed: [db01] (item=python3-mysqldb) => {"ansible_loop_var": "item", "changed": false, "item": "python3-mysqldb", "msg": "Failed to lock apt for exclusive operation: Failed to lock directory /var/lib/apt/lists/: E:Could not get lock /var/lib/apt/lists/lock. It is held by process 13181 (apt-get)"}
+2021-06-21 05:45:23,780 p=3663 u=root n=ansible | failed: [db01] (item=libmysqlclient-dev) => {"ansible_loop_var": "item", "changed": false, "item": "libmysqlclient-dev", "msg": "Failed to lock apt for exclusive operation: Failed to lock directory /var/lib/apt/lists/: E:Could not get lock /var/lib/apt/lists/lock. It is held by process 13181 (apt-get)"}
+2021-06-21 05:45:23,782 p=3663 u=root n=ansible | ...ignoring
+2021-06-21 05:45:23,792 p=3663 u=root n=ansible | TASK [Start and enable mysql service] *****************************************************************************************************************************
+2021-06-21 05:45:24,558 p=3663 u=root n=ansible | fatal: [db01]: FAILED! => {"changed": false, "msg": "Could not find the requested service mysql: host"}
+2021-06-21 05:45:24,559 p=3663 u=root n=ansible | PLAY RECAP ********************************************************************************************************************************************************
+2021-06-21 05:45:24,560 p=3663 u=root n=ansible | app01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2021-06-21 05:45:24,560 p=3663 u=root n=ansible | cntl                       : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2021-06-21 05:45:24,560 p=3663 u=root n=ansible | db01                       : ok=4    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=1   
+2021-06-21 05:45:24,560 p=3663 u=root n=ansible | localhost                  : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2021-06-21 05:45:24,561 p=3663 u=root n=ansible | mc01                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2021-06-21 05:45:24,561 p=3663 u=root n=ansible | rmq01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2021-06-21 05:45:24,561 p=3663 u=root n=ansible | web01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2021-06-21 08:35:29,932 p=5876 u=root n=ansible | PLAY [Generate artifact, copy artifact & sql file to files directory] *********************************************************************************************
+2021-06-21 08:35:29,945 p=5876 u=root n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************
+2021-06-21 08:35:31,065 p=5876 u=root n=ansible | ok: [localhost]
+2021-06-21 08:35:31,081 p=5876 u=root n=ansible | TASK [Install  jdk, maven, git] ***********************************************************************************************************************************
+2021-06-21 08:35:37,211 p=5876 u=root n=ansible | ok: [localhost] => (item=git)
+2021-06-21 08:35:39,036 p=5876 u=root n=ansible | ok: [localhost] => (item=openjdk-8-jdk)
+2021-06-21 08:35:40,750 p=5876 u=root n=ansible | ok: [localhost] => (item=maven)
+2021-06-21 08:35:40,761 p=5876 u=root n=ansible | TASK [Clone source code from github] ******************************************************************************************************************************
+2021-06-21 08:35:41,472 p=5876 u=root n=ansible | ok: [localhost]
+2021-06-21 08:35:41,482 p=5876 u=root n=ansible | TASK [mvn install command to build artifact] **********************************************************************************************************************
+2021-06-21 08:35:41,496 p=5876 u=root n=ansible | skipping: [localhost]
+2021-06-21 08:35:41,506 p=5876 u=root n=ansible | TASK [Copy artifacts to files directory] **************************************************************************************************************************
+2021-06-21 08:35:42,469 p=5876 u=root n=ansible | ok: [localhost] => (item=/root/scripts/ansible-aws-vpc/provision-stack/Vprofile-repo/target/vprofile-v2.war)
+2021-06-21 08:35:42,479 p=5876 u=root n=ansible | TASK [Copy SQL file to files directory] ***************************************************************************************************************************
+2021-06-21 08:35:42,896 p=5876 u=root n=ansible | ok: [localhost]
+2021-06-21 08:35:42,912 p=5876 u=root n=ansible | PLAY [Set host to ip mapping in /etc/hosts file of all the instances in the stack] ********************************************************************************
+2021-06-21 08:35:42,916 p=5876 u=root n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************
+2021-06-21 08:35:44,589 p=5876 u=root n=ansible | ok: [db01]
+2021-06-21 08:35:50,148 p=5876 u=root n=ansible | ok: [web01]
+2021-06-21 08:35:50,182 p=5876 u=root n=ansible | ok: [app01]
+2021-06-21 08:35:50,187 p=5876 u=root n=ansible | ok: [mc01]
+2021-06-21 08:35:50,191 p=5876 u=root n=ansible | ok: [rmq01]
+2021-06-21 08:35:50,204 p=5876 u=root n=ansible | TASK [Import VPC setup Variable] **********************************************************************************************************************************
+2021-06-21 08:35:50,251 p=5876 u=root n=ansible | ok: [web01]
+2021-06-21 08:35:50,272 p=5876 u=root n=ansible | ok: [app01]
+2021-06-21 08:35:50,291 p=5876 u=root n=ansible | ok: [rmq01]
+2021-06-21 08:35:50,295 p=5876 u=root n=ansible | ok: [mc01]
+2021-06-21 08:35:50,305 p=5876 u=root n=ansible | ok: [db01]
+2021-06-21 08:35:50,313 p=5876 u=root n=ansible | TASK [Update hosts file for all the hosts] ************************************************************************************************************************
+2021-06-21 08:35:50,954 p=5876 u=root n=ansible | changed: [db01]
+2021-06-21 08:35:51,465 p=5876 u=root n=ansible | changed: [mc01]
+2021-06-21 08:35:51,541 p=5876 u=root n=ansible | ok: [web01]
+2021-06-21 08:35:51,544 p=5876 u=root n=ansible | ok: [rmq01]
+2021-06-21 08:35:51,547 p=5876 u=root n=ansible | ok: [app01]
+2021-06-21 08:35:51,565 p=5876 u=root n=ansible | PLAY [Setup Mysql with accounts db and remote login] **************************************************************************************************************
+2021-06-21 08:35:51,580 p=5876 u=root n=ansible | TASK [Installing Mysql Service and dependencies] ******************************************************************************************************************
+2021-06-21 08:36:32,601 p=5876 u=root n=ansible | changed: [db01] => (item=mysql-server)
+2021-06-21 08:36:37,955 p=5876 u=root n=ansible | changed: [db01] => (item=mysql-client)
+2021-06-21 08:36:38,677 p=5876 u=root n=ansible | failed: [db01] (item=python-mysqldb) => {"ansible_loop_var": "item", "changed": false, "item": "python-mysqldb", "msg": "No package matching 'python-mysqldb' is available"}
+2021-06-21 08:36:43,919 p=5876 u=root n=ansible | changed: [db01] => (item=python3-mysqldb)
+2021-06-21 08:37:01,730 p=5876 u=root n=ansible | changed: [db01] => (item=libmysqlclient-dev)
+2021-06-21 08:37:01,733 p=5876 u=root n=ansible | ...ignoring
+2021-06-21 08:37:01,743 p=5876 u=root n=ansible | TASK [Start and enable mysql service] *****************************************************************************************************************************
+2021-06-21 08:37:02,549 p=5876 u=root n=ansible | ok: [db01]
+2021-06-21 08:37:02,558 p=5876 u=root n=ansible | TASK [creating mysql user] ****************************************************************************************************************************************
+2021-06-21 08:37:03,206 p=5876 u=root n=ansible | changed: [db01]
+2021-06-21 08:37:03,215 p=5876 u=root n=ansible | TASK [Creating accounts DB] ***************************************************************************************************************************************
+2021-06-21 08:37:03,688 p=5876 u=root n=ansible | changed: [db01]
+2021-06-21 08:37:03,698 p=5876 u=root n=ansible | TASK [Enable remote login to mysql svc] ***************************************************************************************************************************
+2021-06-21 08:37:04,138 p=5876 u=root n=ansible | changed: [db01]
+2021-06-21 08:37:04,148 p=5876 u=root n=ansible | RUNNING HANDLER [Restart mysql] ***********************************************************************************************************************************
+2021-06-21 08:37:06,962 p=5876 u=root n=ansible | changed: [db01]
+2021-06-21 08:37:06,973 p=5876 u=root n=ansible | PLAY [Deploy SQL file on accounts db] *****************************************************************************************************************************
+2021-06-21 08:37:06,985 p=5876 u=root n=ansible | TASK [Copy SQL to dbsrv] ******************************************************************************************************************************************
+2021-06-21 08:37:07,670 p=5876 u=root n=ansible | changed: [db01]
+2021-06-21 08:37:07,680 p=5876 u=root n=ansible | TASK [Restoring DB] ***********************************************************************************************************************************************
+2021-06-21 08:37:08,161 p=5876 u=root n=ansible | changed: [db01]
+2021-06-21 08:37:08,171 p=5876 u=root n=ansible | RUNNING HANDLER [Restart mysql] ***********************************************************************************************************************************
+2021-06-21 08:37:10,387 p=5876 u=root n=ansible | changed: [db01]
+2021-06-21 08:37:10,398 p=5876 u=root n=ansible | PLAY [Install Memcache, Start & enable SVC] ***********************************************************************************************************************
+2021-06-21 08:37:10,411 p=5876 u=root n=ansible | TASK [Install Memcache] *******************************************************************************************************************************************
+2021-06-21 08:37:27,692 p=5876 u=root n=ansible | changed: [mc01]
+2021-06-21 08:37:27,701 p=5876 u=root n=ansible | TASK [Start & Enable Memcache] ************************************************************************************************************************************
+2021-06-21 08:37:28,132 p=5876 u=root n=ansible | ok: [mc01]
+2021-06-21 08:37:28,141 p=5876 u=root n=ansible | TASK [Enable remote login to memecache] ***************************************************************************************************************************
+2021-06-21 08:37:28,440 p=5876 u=root n=ansible | changed: [mc01]
+2021-06-21 08:37:28,448 p=5876 u=root n=ansible | RUNNING HANDLER [Restart memcached] *******************************************************************************************************************************
+2021-06-21 08:37:28,930 p=5876 u=root n=ansible | changed: [mc01]
+2021-06-21 08:37:28,941 p=5876 u=root n=ansible | PLAY [Install & Setup RabbitMQ with user] *************************************************************************************************************************
+2021-06-21 08:37:28,954 p=5876 u=root n=ansible | TASK [Install Erlang Repository Package] **************************************************************************************************************************
+2021-06-21 08:37:31,498 p=5876 u=root n=ansible | changed: [rmq01]
+2021-06-21 08:37:31,508 p=5876 u=root n=ansible | TASK [Add an Erlang Solution public Key] **************************************************************************************************************************
+2021-06-21 08:37:32,550 p=5876 u=root n=ansible | ok: [rmq01]
+2021-06-21 08:37:32,561 p=5876 u=root n=ansible | TASK [Install Erlang] *********************************************************************************************************************************************
+2021-06-21 08:39:53,459 p=5876 u=root n=ansible | changed: [rmq01]
+2021-06-21 08:39:53,465 p=5876 u=root n=ansible | TASK [Add an Apt signing key, uses whichever key is at the URL] ***************************************************************************************************
+2021-06-21 08:39:54,862 p=5876 u=root n=ansible | changed: [rmq01]
+2021-06-21 08:39:54,872 p=5876 u=root n=ansible | TASK [apt_repository] *********************************************************************************************************************************************
+2021-06-21 08:40:37,760 p=5876 u=root n=ansible | fatal: [rmq01]: FAILED! => {"changed": false, "msg": "Failed to update apt cache: E:Failed to fetch https://dl.bintray.com/rabbitmq/debian/dists/bionic/InRelease  403  Forbidden [IP: 50.112.35.45 443], E:The repository 'https://dl.bintray.com/rabbitmq/debian bionic InRelease' is not signed."}
+2021-06-21 08:40:37,761 p=5876 u=root n=ansible | PLAY RECAP ********************************************************************************************************************************************************
+2021-06-21 08:40:37,762 p=5876 u=root n=ansible | app01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2021-06-21 08:40:37,762 p=5876 u=root n=ansible | db01                       : ok=12   changed=9    unreachable=0    failed=0    skipped=0    rescued=0    ignored=1   
+2021-06-21 08:40:37,762 p=5876 u=root n=ansible | localhost                  : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2021-06-21 08:40:37,762 p=5876 u=root n=ansible | mc01                       : ok=7    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2021-06-21 08:40:37,763 p=5876 u=root n=ansible | rmq01                      : ok=7    changed=3    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2021-06-21 08:40:37,763 p=5876 u=root n=ansible | web01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2021-06-21 08:50:59,089 p=7366 u=root n=ansible | PLAY [Generate artifact, copy artifact & sql file to files directory] *********************************************************************************************
+2021-06-21 08:50:59,103 p=7366 u=root n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************
+2021-06-21 08:51:00,230 p=7366 u=root n=ansible | ok: [localhost]
+2021-06-21 08:51:00,245 p=7366 u=root n=ansible | TASK [Install  jdk, maven, git] ***********************************************************************************************************************************
+2021-06-21 08:51:03,705 p=7366 u=root n=ansible | ok: [localhost] => (item=git)
+2021-06-21 08:51:05,489 p=7366 u=root n=ansible | ok: [localhost] => (item=openjdk-8-jdk)
+2021-06-21 08:51:07,226 p=7366 u=root n=ansible | ok: [localhost] => (item=maven)
+2021-06-21 08:51:07,237 p=7366 u=root n=ansible | TASK [Clone source code from github] ******************************************************************************************************************************
+2021-06-21 08:51:07,946 p=7366 u=root n=ansible | ok: [localhost]
+2021-06-21 08:51:07,955 p=7366 u=root n=ansible | TASK [mvn install command to build artifact] **********************************************************************************************************************
+2021-06-21 08:51:07,969 p=7366 u=root n=ansible | skipping: [localhost]
+2021-06-21 08:51:07,979 p=7366 u=root n=ansible | TASK [Copy artifacts to files directory] **************************************************************************************************************************
+2021-06-21 08:51:08,871 p=7366 u=root n=ansible | ok: [localhost] => (item=/root/scripts/ansible-aws-vpc/provision-stack/Vprofile-repo/target/vprofile-v2.war)
+2021-06-21 08:51:08,881 p=7366 u=root n=ansible | TASK [Copy SQL file to files directory] ***************************************************************************************************************************
+2021-06-21 08:51:09,300 p=7366 u=root n=ansible | ok: [localhost]
+2021-06-21 08:51:09,316 p=7366 u=root n=ansible | PLAY [Set host to ip mapping in /etc/hosts file of all the instances in the stack] ********************************************************************************
+2021-06-21 08:51:09,321 p=7366 u=root n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************
+2021-06-21 08:51:11,359 p=7366 u=root n=ansible | ok: [db01]
+2021-06-21 08:51:13,764 p=7366 u=root n=ansible | ok: [app01]
+2021-06-21 08:51:13,794 p=7366 u=root n=ansible | ok: [web01]
+2021-06-21 08:51:13,841 p=7366 u=root n=ansible | ok: [mc01]
+2021-06-21 08:51:13,856 p=7366 u=root n=ansible | ok: [rmq01]
+2021-06-21 08:51:13,870 p=7366 u=root n=ansible | TASK [Import VPC setup Variable] **********************************************************************************************************************************
+2021-06-21 08:51:13,918 p=7366 u=root n=ansible | ok: [web01]
+2021-06-21 08:51:13,941 p=7366 u=root n=ansible | ok: [app01]
+2021-06-21 08:51:13,967 p=7366 u=root n=ansible | ok: [rmq01]
+2021-06-21 08:51:13,968 p=7366 u=root n=ansible | ok: [mc01]
+2021-06-21 08:51:13,974 p=7366 u=root n=ansible | ok: [db01]
+2021-06-21 08:51:13,984 p=7366 u=root n=ansible | TASK [Update hosts file for all the hosts] ************************************************************************************************************************
+2021-06-21 08:51:14,601 p=7366 u=root n=ansible | ok: [db01]
+2021-06-21 08:51:15,131 p=7366 u=root n=ansible | ok: [mc01]
+2021-06-21 08:51:15,202 p=7366 u=root n=ansible | ok: [app01]
+2021-06-21 08:51:15,204 p=7366 u=root n=ansible | ok: [web01]
+2021-06-21 08:51:15,209 p=7366 u=root n=ansible | ok: [rmq01]
+2021-06-21 08:51:15,225 p=7366 u=root n=ansible | PLAY [Setup Mysql with accounts db and remote login] **************************************************************************************************************
+2021-06-21 08:51:15,240 p=7366 u=root n=ansible | TASK [Installing Mysql Service and dependencies] ******************************************************************************************************************
+2021-06-21 08:51:16,354 p=7366 u=root n=ansible | ok: [db01] => (item=mysql-server)
+2021-06-21 08:51:17,282 p=7366 u=root n=ansible | ok: [db01] => (item=mysql-client)
+2021-06-21 08:51:17,989 p=7366 u=root n=ansible | failed: [db01] (item=python-mysqldb) => {"ansible_loop_var": "item", "changed": false, "item": "python-mysqldb", "msg": "No package matching 'python-mysqldb' is available"}
+2021-06-21 08:51:18,897 p=7366 u=root n=ansible | ok: [db01] => (item=python3-mysqldb)
+2021-06-21 08:51:19,802 p=7366 u=root n=ansible | ok: [db01] => (item=libmysqlclient-dev)
+2021-06-21 08:51:19,804 p=7366 u=root n=ansible | ...ignoring
+2021-06-21 08:51:19,813 p=7366 u=root n=ansible | TASK [Start and enable mysql service] *****************************************************************************************************************************
+2021-06-21 08:51:20,556 p=7366 u=root n=ansible | ok: [db01]
+2021-06-21 08:51:20,566 p=7366 u=root n=ansible | TASK [creating mysql user] ****************************************************************************************************************************************
+2021-06-21 08:51:21,075 p=7366 u=root n=ansible | changed: [db01]
+2021-06-21 08:51:21,085 p=7366 u=root n=ansible | TASK [Creating accounts DB] ***************************************************************************************************************************************
+2021-06-21 08:51:21,527 p=7366 u=root n=ansible | ok: [db01]
+2021-06-21 08:51:21,536 p=7366 u=root n=ansible | TASK [Enable remote login to mysql svc] ***************************************************************************************************************************
+2021-06-21 08:51:21,950 p=7366 u=root n=ansible | ok: [db01]
+2021-06-21 08:51:21,967 p=7366 u=root n=ansible | PLAY [Deploy SQL file on accounts db] *****************************************************************************************************************************
+2021-06-21 08:51:21,980 p=7366 u=root n=ansible | TASK [Copy SQL to dbsrv] ******************************************************************************************************************************************
+2021-06-21 08:51:22,530 p=7366 u=root n=ansible | ok: [db01]
+2021-06-21 08:51:22,540 p=7366 u=root n=ansible | TASK [Restoring DB] ***********************************************************************************************************************************************
+2021-06-21 08:51:23,019 p=7366 u=root n=ansible | changed: [db01]
+2021-06-21 08:51:23,029 p=7366 u=root n=ansible | RUNNING HANDLER [Restart mysql] ***********************************************************************************************************************************
+2021-06-21 08:51:26,032 p=7366 u=root n=ansible | changed: [db01]
+2021-06-21 08:51:26,044 p=7366 u=root n=ansible | PLAY [Install Memcache, Start & enable SVC] ***********************************************************************************************************************
+2021-06-21 08:51:26,057 p=7366 u=root n=ansible | TASK [Install Memcache] *******************************************************************************************************************************************
+2021-06-21 08:51:27,054 p=7366 u=root n=ansible | ok: [mc01]
+2021-06-21 08:51:27,063 p=7366 u=root n=ansible | TASK [Start & Enable Memcache] ************************************************************************************************************************************
+2021-06-21 08:51:27,505 p=7366 u=root n=ansible | ok: [mc01]
+2021-06-21 08:51:27,514 p=7366 u=root n=ansible | TASK [Enable remote login to memecache] ***************************************************************************************************************************
+2021-06-21 08:51:27,790 p=7366 u=root n=ansible | ok: [mc01]
+2021-06-21 08:51:27,807 p=7366 u=root n=ansible | PLAY [Install & Setup RabbitMQ with user] *************************************************************************************************************************
+2021-06-21 08:51:27,821 p=7366 u=root n=ansible | TASK [Install Erlang Repository Package] **************************************************************************************************************************
+2021-06-21 08:51:29,343 p=7366 u=root n=ansible | ok: [rmq01]
+2021-06-21 08:51:29,352 p=7366 u=root n=ansible | TASK [Add an Erlang Solution public Key] **************************************************************************************************************************
+2021-06-21 08:51:30,227 p=7366 u=root n=ansible | ok: [rmq01]
+2021-06-21 08:51:30,237 p=7366 u=root n=ansible | TASK [Install Erlang] *********************************************************************************************************************************************
+2021-06-21 08:51:31,222 p=7366 u=root n=ansible | ok: [rmq01]
+2021-06-21 08:51:31,231 p=7366 u=root n=ansible | TASK [Add an Apt signing key, uses whichever key is at the URL] ***************************************************************************************************
+2021-06-21 08:51:32,067 p=7366 u=root n=ansible | ok: [rmq01]
+2021-06-21 08:51:32,076 p=7366 u=root n=ansible | TASK [apt_repository] *********************************************************************************************************************************************
+2021-06-21 08:52:08,441 p=7366 u=root n=ansible | fatal: [rmq01]: FAILED! => {"changed": false, "msg": "Failed to update apt cache: E:Failed to fetch https://dl.bintray.com/rabbitmq/debian/dists/bionic/InRelease  403  Forbidden [IP: 34.214.135.19 443], E:The repository 'https://dl.bintray.com/rabbitmq/debian bionic InRelease' is not signed."}
+2021-06-21 08:52:08,442 p=7366 u=root n=ansible | PLAY RECAP ********************************************************************************************************************************************************
+2021-06-21 08:52:08,442 p=7366 u=root n=ansible | app01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2021-06-21 08:52:08,442 p=7366 u=root n=ansible | db01                       : ok=11   changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=1   
+2021-06-21 08:52:08,443 p=7366 u=root n=ansible | localhost                  : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2021-06-21 08:52:08,443 p=7366 u=root n=ansible | mc01                       : ok=6    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2021-06-21 08:52:08,443 p=7366 u=root n=ansible | rmq01                      : ok=7    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2021-06-21 08:52:08,443 p=7366 u=root n=ansible | web01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2021-06-21 08:57:20,803 p=8750 u=root n=ansible | PLAY [Generate artifact, copy artifact & sql file to files directory] *********************************************************************************************
+2021-06-21 08:57:20,817 p=8750 u=root n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************
+2021-06-21 08:57:21,963 p=8750 u=root n=ansible | ok: [localhost]
+2021-06-21 08:57:21,979 p=8750 u=root n=ansible | TASK [Install  jdk, maven, git] ***********************************************************************************************************************************
+2021-06-21 08:57:23,971 p=8750 u=root n=ansible | ok: [localhost] => (item=git)
+2021-06-21 08:57:25,697 p=8750 u=root n=ansible | ok: [localhost] => (item=openjdk-8-jdk)
+2021-06-21 08:57:27,394 p=8750 u=root n=ansible | ok: [localhost] => (item=maven)
+2021-06-21 08:57:27,405 p=8750 u=root n=ansible | TASK [Clone source code from github] ******************************************************************************************************************************
+2021-06-21 08:57:28,166 p=8750 u=root n=ansible | ok: [localhost]
+2021-06-21 08:57:28,176 p=8750 u=root n=ansible | TASK [mvn install command to build artifact] **********************************************************************************************************************
+2021-06-21 08:57:28,190 p=8750 u=root n=ansible | skipping: [localhost]
+2021-06-21 08:57:28,199 p=8750 u=root n=ansible | TASK [Copy artifacts to files directory] **************************************************************************************************************************
+2021-06-21 08:57:29,078 p=8750 u=root n=ansible | ok: [localhost] => (item=/root/scripts/ansible-aws-vpc/provision-stack/Vprofile-repo/target/vprofile-v2.war)
+2021-06-21 08:57:29,088 p=8750 u=root n=ansible | TASK [Copy SQL file to files directory] ***************************************************************************************************************************
+2021-06-21 08:57:29,503 p=8750 u=root n=ansible | ok: [localhost]
+2021-06-21 08:57:29,519 p=8750 u=root n=ansible | PLAY [Set host to ip mapping in /etc/hosts file of all the instances in the stack] ********************************************************************************
+2021-06-21 08:57:29,523 p=8750 u=root n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************
+2021-06-21 08:57:31,294 p=8750 u=root n=ansible | ok: [db01]
+2021-06-21 08:57:33,941 p=8750 u=root n=ansible | ok: [mc01]
+2021-06-21 08:57:34,008 p=8750 u=root n=ansible | ok: [web01]
+2021-06-21 08:57:34,119 p=8750 u=root n=ansible | ok: [rmq01]
+2021-06-21 08:57:34,120 p=8750 u=root n=ansible | ok: [app01]
+2021-06-21 08:57:34,133 p=8750 u=root n=ansible | TASK [Import VPC setup Variable] **********************************************************************************************************************************
+2021-06-21 08:57:34,182 p=8750 u=root n=ansible | ok: [web01]
+2021-06-21 08:57:34,205 p=8750 u=root n=ansible | ok: [app01]
+2021-06-21 08:57:34,227 p=8750 u=root n=ansible | ok: [rmq01]
+2021-06-21 08:57:34,228 p=8750 u=root n=ansible | ok: [mc01]
+2021-06-21 08:57:34,236 p=8750 u=root n=ansible | ok: [db01]
+2021-06-21 08:57:34,244 p=8750 u=root n=ansible | TASK [Update hosts file for all the hosts] ************************************************************************************************************************
+2021-06-21 08:57:34,852 p=8750 u=root n=ansible | ok: [db01]
+2021-06-21 08:57:35,499 p=8750 u=root n=ansible | ok: [web01]
+2021-06-21 08:57:35,501 p=8750 u=root n=ansible | ok: [mc01]
+2021-06-21 08:57:35,501 p=8750 u=root n=ansible | ok: [rmq01]
+2021-06-21 08:57:35,507 p=8750 u=root n=ansible | ok: [app01]
+2021-06-21 08:57:35,525 p=8750 u=root n=ansible | PLAY [Setup Mysql with accounts db and remote login] **************************************************************************************************************
+2021-06-21 08:57:35,540 p=8750 u=root n=ansible | TASK [Installing Mysql Service and dependencies] ******************************************************************************************************************
+2021-06-21 08:57:36,703 p=8750 u=root n=ansible | ok: [db01] => (item=mysql-server)
+2021-06-21 08:57:37,631 p=8750 u=root n=ansible | ok: [db01] => (item=mysql-client)
+2021-06-21 08:57:38,325 p=8750 u=root n=ansible | failed: [db01] (item=python-mysqldb) => {"ansible_loop_var": "item", "changed": false, "item": "python-mysqldb", "msg": "No package matching 'python-mysqldb' is available"}
+2021-06-21 08:57:39,266 p=8750 u=root n=ansible | ok: [db01] => (item=python3-mysqldb)
+2021-06-21 08:57:40,216 p=8750 u=root n=ansible | ok: [db01] => (item=libmysqlclient-dev)
+2021-06-21 08:57:40,218 p=8750 u=root n=ansible | ...ignoring
+2021-06-21 08:57:40,227 p=8750 u=root n=ansible | TASK [Start and enable mysql service] *****************************************************************************************************************************
+2021-06-21 08:57:40,990 p=8750 u=root n=ansible | ok: [db01]
+2021-06-21 08:57:40,999 p=8750 u=root n=ansible | TASK [creating mysql user] ****************************************************************************************************************************************
+2021-06-21 08:57:41,485 p=8750 u=root n=ansible | changed: [db01]
+2021-06-21 08:57:41,494 p=8750 u=root n=ansible | TASK [Creating accounts DB] ***************************************************************************************************************************************
+2021-06-21 08:57:41,962 p=8750 u=root n=ansible | ok: [db01]
+2021-06-21 08:57:41,971 p=8750 u=root n=ansible | TASK [Enable remote login to mysql svc] ***************************************************************************************************************************
+2021-06-21 08:57:42,397 p=8750 u=root n=ansible | ok: [db01]
+2021-06-21 08:57:42,414 p=8750 u=root n=ansible | PLAY [Deploy SQL file on accounts db] *****************************************************************************************************************************
+2021-06-21 08:57:42,427 p=8750 u=root n=ansible | TASK [Copy SQL to dbsrv] ******************************************************************************************************************************************
+2021-06-21 08:57:42,933 p=8750 u=root n=ansible | ok: [db01]
+2021-06-21 08:57:42,942 p=8750 u=root n=ansible | TASK [Restoring DB] ***********************************************************************************************************************************************
+2021-06-21 08:57:43,434 p=8750 u=root n=ansible | changed: [db01]
+2021-06-21 08:57:43,444 p=8750 u=root n=ansible | RUNNING HANDLER [Restart mysql] ***********************************************************************************************************************************
+2021-06-21 08:57:45,576 p=8750 u=root n=ansible | changed: [db01]
+2021-06-21 08:57:45,587 p=8750 u=root n=ansible | PLAY [Install Memcache, Start & enable SVC] ***********************************************************************************************************************
+2021-06-21 08:57:45,600 p=8750 u=root n=ansible | TASK [Install Memcache] *******************************************************************************************************************************************
+2021-06-21 08:57:46,606 p=8750 u=root n=ansible | ok: [mc01]
+2021-06-21 08:57:46,615 p=8750 u=root n=ansible | TASK [Start & Enable Memcache] ************************************************************************************************************************************
+2021-06-21 08:57:47,059 p=8750 u=root n=ansible | ok: [mc01]
+2021-06-21 08:57:47,068 p=8750 u=root n=ansible | TASK [Enable remote login to memecache] ***************************************************************************************************************************
+2021-06-21 08:57:47,347 p=8750 u=root n=ansible | ok: [mc01]
+2021-06-21 08:57:47,364 p=8750 u=root n=ansible | PLAY [Install & Setup RabbitMQ with user] *************************************************************************************************************************
+2021-06-21 08:57:47,378 p=8750 u=root n=ansible | TASK [Install Erlang Repository Package] **************************************************************************************************************************
+2021-06-21 08:57:48,965 p=8750 u=root n=ansible | ok: [rmq01]
+2021-06-21 08:57:48,974 p=8750 u=root n=ansible | TASK [Add an Erlang Solution public Key] **************************************************************************************************************************
+2021-06-21 08:57:49,843 p=8750 u=root n=ansible | ok: [rmq01]
+2021-06-21 08:57:49,853 p=8750 u=root n=ansible | TASK [Install Erlang] *********************************************************************************************************************************************
+2021-06-21 08:57:50,877 p=8750 u=root n=ansible | ok: [rmq01]
+2021-06-21 08:57:50,887 p=8750 u=root n=ansible | TASK [Add an Apt signing key, uses whichever key is at the URL] ***************************************************************************************************
+2021-06-21 08:57:51,742 p=8750 u=root n=ansible | ok: [rmq01]
+2021-06-21 08:57:51,751 p=8750 u=root n=ansible | TASK [apt_repository] *********************************************************************************************************************************************
+2021-06-21 08:58:32,505 p=8750 u=root n=ansible | fatal: [rmq01]: FAILED! => {"changed": false, "msg": "Failed to update apt cache: E:Failed to fetch https://dl.bintray.com/rabbitmq/debian/dists/bionic/InRelease  403  Forbidden [IP: 34.214.237.80 443], E:The repository 'https://dl.bintray.com/rabbitmq/debian bionic InRelease' is not signed."}
+2021-06-21 08:58:32,506 p=8750 u=root n=ansible | PLAY RECAP ********************************************************************************************************************************************************
+2021-06-21 08:58:32,506 p=8750 u=root n=ansible | app01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2021-06-21 08:58:32,506 p=8750 u=root n=ansible | db01                       : ok=11   changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=1   
+2021-06-21 08:58:32,507 p=8750 u=root n=ansible | localhost                  : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2021-06-21 08:58:32,507 p=8750 u=root n=ansible | mc01                       : ok=6    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2021-06-21 08:58:32,507 p=8750 u=root n=ansible | rmq01                      : ok=7    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2021-06-21 08:58:32,507 p=8750 u=root n=ansible | web01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2021-06-21 09:05:30,456 p=10134 u=root n=ansible | PLAY [Generate artifact, copy artifact & sql file to files directory] *********************************************************************************************
+2021-06-21 09:05:30,470 p=10134 u=root n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************
+2021-06-21 09:05:31,580 p=10134 u=root n=ansible | ok: [localhost]
+2021-06-21 09:05:31,595 p=10134 u=root n=ansible | TASK [Install  jdk, maven, git] ***********************************************************************************************************************************
+2021-06-21 09:05:33,600 p=10134 u=root n=ansible | ok: [localhost] => (item=git)
+2021-06-21 09:05:35,376 p=10134 u=root n=ansible | ok: [localhost] => (item=openjdk-8-jdk)
+2021-06-21 09:05:37,097 p=10134 u=root n=ansible | ok: [localhost] => (item=maven)
+2021-06-21 09:05:37,108 p=10134 u=root n=ansible | TASK [Clone source code from github] ******************************************************************************************************************************
+2021-06-21 09:05:37,806 p=10134 u=root n=ansible | ok: [localhost]
+2021-06-21 09:05:37,816 p=10134 u=root n=ansible | TASK [mvn install command to build artifact] **********************************************************************************************************************
+2021-06-21 09:05:37,830 p=10134 u=root n=ansible | skipping: [localhost]
+2021-06-21 09:05:37,840 p=10134 u=root n=ansible | TASK [Copy artifacts to files directory] **************************************************************************************************************************
+2021-06-21 09:05:38,715 p=10134 u=root n=ansible | ok: [localhost] => (item=/root/scripts/ansible-aws-vpc/provision-stack/Vprofile-repo/target/vprofile-v2.war)
+2021-06-21 09:05:38,725 p=10134 u=root n=ansible | TASK [Copy SQL file to files directory] ***************************************************************************************************************************
+2021-06-21 09:05:39,138 p=10134 u=root n=ansible | ok: [localhost]
+2021-06-21 09:05:39,155 p=10134 u=root n=ansible | PLAY [Set host to ip mapping in /etc/hosts file of all the instances in the stack] ********************************************************************************
+2021-06-21 09:05:39,159 p=10134 u=root n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************
+2021-06-21 09:05:40,865 p=10134 u=root n=ansible | ok: [db01]
+2021-06-21 09:05:43,589 p=10134 u=root n=ansible | ok: [app01]
+2021-06-21 09:05:43,593 p=10134 u=root n=ansible | ok: [web01]
+2021-06-21 09:05:43,607 p=10134 u=root n=ansible | ok: [rmq01]
+2021-06-21 09:05:43,635 p=10134 u=root n=ansible | ok: [mc01]
+2021-06-21 09:05:43,647 p=10134 u=root n=ansible | TASK [Import VPC setup Variable] **********************************************************************************************************************************
+2021-06-21 09:05:43,697 p=10134 u=root n=ansible | ok: [web01]
+2021-06-21 09:05:43,721 p=10134 u=root n=ansible | ok: [app01]
+2021-06-21 09:05:43,745 p=10134 u=root n=ansible | ok: [rmq01]
+2021-06-21 09:05:43,746 p=10134 u=root n=ansible | ok: [mc01]
+2021-06-21 09:05:43,753 p=10134 u=root n=ansible | ok: [db01]
+2021-06-21 09:05:43,762 p=10134 u=root n=ansible | TASK [Update hosts file for all the hosts] ************************************************************************************************************************
+2021-06-21 09:05:44,377 p=10134 u=root n=ansible | ok: [db01]
+2021-06-21 09:05:44,925 p=10134 u=root n=ansible | ok: [app01]
+2021-06-21 09:05:45,003 p=10134 u=root n=ansible | ok: [rmq01]
+2021-06-21 09:05:45,006 p=10134 u=root n=ansible | ok: [web01]
+2021-06-21 09:05:45,010 p=10134 u=root n=ansible | ok: [mc01]
+2021-06-21 09:05:45,031 p=10134 u=root n=ansible | PLAY [Setup Mysql with accounts db and remote login] **************************************************************************************************************
+2021-06-21 09:05:45,046 p=10134 u=root n=ansible | TASK [Installing Mysql Service and dependencies] ******************************************************************************************************************
+2021-06-21 09:05:46,221 p=10134 u=root n=ansible | ok: [db01] => (item=mysql-server)
+2021-06-21 09:05:47,166 p=10134 u=root n=ansible | ok: [db01] => (item=mysql-client)
+2021-06-21 09:05:47,884 p=10134 u=root n=ansible | failed: [db01] (item=python-mysqldb) => {"ansible_loop_var": "item", "changed": false, "item": "python-mysqldb", "msg": "No package matching 'python-mysqldb' is available"}
+2021-06-21 09:05:48,826 p=10134 u=root n=ansible | ok: [db01] => (item=python3-mysqldb)
+2021-06-21 09:05:49,739 p=10134 u=root n=ansible | ok: [db01] => (item=libmysqlclient-dev)
+2021-06-21 09:05:49,741 p=10134 u=root n=ansible | ...ignoring
+2021-06-21 09:05:49,751 p=10134 u=root n=ansible | TASK [Start and enable mysql service] *****************************************************************************************************************************
+2021-06-21 09:05:50,507 p=10134 u=root n=ansible | ok: [db01]
+2021-06-21 09:05:50,516 p=10134 u=root n=ansible | TASK [creating mysql user] ****************************************************************************************************************************************
+2021-06-21 09:05:50,995 p=10134 u=root n=ansible | changed: [db01]
+2021-06-21 09:05:51,005 p=10134 u=root n=ansible | TASK [Creating accounts DB] ***************************************************************************************************************************************
+2021-06-21 09:05:51,453 p=10134 u=root n=ansible | ok: [db01]
+2021-06-21 09:05:51,462 p=10134 u=root n=ansible | TASK [Enable remote login to mysql svc] ***************************************************************************************************************************
+2021-06-21 09:05:51,882 p=10134 u=root n=ansible | ok: [db01]
+2021-06-21 09:05:51,899 p=10134 u=root n=ansible | PLAY [Deploy SQL file on accounts db] *****************************************************************************************************************************
+2021-06-21 09:05:51,912 p=10134 u=root n=ansible | TASK [Copy SQL to dbsrv] ******************************************************************************************************************************************
+2021-06-21 09:05:52,421 p=10134 u=root n=ansible | ok: [db01]
+2021-06-21 09:05:52,430 p=10134 u=root n=ansible | TASK [Restoring DB] ***********************************************************************************************************************************************
+2021-06-21 09:05:52,958 p=10134 u=root n=ansible | changed: [db01]
+2021-06-21 09:05:52,966 p=10134 u=root n=ansible | RUNNING HANDLER [Restart mysql] ***********************************************************************************************************************************
+2021-06-21 09:05:55,131 p=10134 u=root n=ansible | changed: [db01]
+2021-06-21 09:05:55,142 p=10134 u=root n=ansible | PLAY [Install Memcache, Start & enable SVC] ***********************************************************************************************************************
+2021-06-21 09:05:55,155 p=10134 u=root n=ansible | TASK [Install Memcache] *******************************************************************************************************************************************
+2021-06-21 09:05:57,244 p=10134 u=root n=ansible | ok: [mc01]
+2021-06-21 09:05:57,253 p=10134 u=root n=ansible | TASK [Start & Enable Memcache] ************************************************************************************************************************************
+2021-06-21 09:05:57,686 p=10134 u=root n=ansible | ok: [mc01]
+2021-06-21 09:05:57,695 p=10134 u=root n=ansible | TASK [Enable remote login to memecache] ***************************************************************************************************************************
+2021-06-21 09:05:57,974 p=10134 u=root n=ansible | ok: [mc01]
+2021-06-21 09:05:57,991 p=10134 u=root n=ansible | PLAY [Install & Setup RabbitMQ with user] *************************************************************************************************************************
+2021-06-21 09:05:58,005 p=10134 u=root n=ansible | TASK [Install Erlang Repository Package] **************************************************************************************************************************
+2021-06-21 09:05:59,517 p=10134 u=root n=ansible | ok: [rmq01]
+2021-06-21 09:05:59,526 p=10134 u=root n=ansible | TASK [Add an Erlang Solution public Key] **************************************************************************************************************************
+2021-06-21 09:06:00,409 p=10134 u=root n=ansible | ok: [rmq01]
+2021-06-21 09:06:00,419 p=10134 u=root n=ansible | TASK [Install Erlang] *********************************************************************************************************************************************
+2021-06-21 09:06:01,443 p=10134 u=root n=ansible | ok: [rmq01]
+2021-06-21 09:06:01,453 p=10134 u=root n=ansible | TASK [Add an Apt signing key, uses whichever key is at the URL] ***************************************************************************************************
+2021-06-21 09:06:02,289 p=10134 u=root n=ansible | ok: [rmq01]
+2021-06-21 09:06:02,299 p=10134 u=root n=ansible | TASK [ansible.builtin.apt_repository] *****************************************************************************************************************************
+2021-06-21 09:06:40,676 p=10134 u=root n=ansible | fatal: [rmq01]: FAILED! => {"changed": false, "msg": "Failed to update apt cache: E:Failed to fetch https://dl.bintray.com/rabbitmq/debian/dists/bionic/InRelease  403  Forbidden [IP: 54.185.54.139 443], E:The repository 'https://dl.bintray.com/rabbitmq/debian bionic InRelease' is not signed."}
+2021-06-21 09:06:40,677 p=10134 u=root n=ansible | PLAY RECAP ********************************************************************************************************************************************************
+2021-06-21 09:06:40,677 p=10134 u=root n=ansible | app01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2021-06-21 09:06:40,678 p=10134 u=root n=ansible | db01                       : ok=11   changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=1   
+2021-06-21 09:06:40,678 p=10134 u=root n=ansible | localhost                  : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2021-06-21 09:06:40,678 p=10134 u=root n=ansible | mc01                       : ok=6    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2021-06-21 09:06:40,678 p=10134 u=root n=ansible | rmq01                      : ok=7    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2021-06-21 09:06:40,678 p=10134 u=root n=ansible | web01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2021-06-21 09:08:27,109 p=11506 u=root n=ansible | PLAY [Generate artifact, copy artifact & sql file to files directory] *********************************************************************************************
+2021-06-21 09:08:27,122 p=11506 u=root n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************
+2021-06-21 09:08:28,244 p=11506 u=root n=ansible | ok: [localhost]
+2021-06-21 09:08:28,259 p=11506 u=root n=ansible | TASK [Install  jdk, maven, git] ***********************************************************************************************************************************
+2021-06-21 09:08:30,223 p=11506 u=root n=ansible | ok: [localhost] => (item=git)
+2021-06-21 09:08:31,952 p=11506 u=root n=ansible | ok: [localhost] => (item=openjdk-8-jdk)
+2021-06-21 09:08:33,688 p=11506 u=root n=ansible | ok: [localhost] => (item=maven)
+2021-06-21 09:08:33,698 p=11506 u=root n=ansible | TASK [Clone source code from github] ******************************************************************************************************************************
+2021-06-21 09:08:34,383 p=11506 u=root n=ansible | ok: [localhost]
+2021-06-21 09:08:34,393 p=11506 u=root n=ansible | TASK [mvn install command to build artifact] **********************************************************************************************************************
+2021-06-21 09:08:34,407 p=11506 u=root n=ansible | skipping: [localhost]
+2021-06-21 09:08:34,417 p=11506 u=root n=ansible | TASK [Copy artifacts to files directory] **************************************************************************************************************************
+2021-06-21 09:08:35,290 p=11506 u=root n=ansible | ok: [localhost] => (item=/root/scripts/ansible-aws-vpc/provision-stack/Vprofile-repo/target/vprofile-v2.war)
+2021-06-21 09:08:35,300 p=11506 u=root n=ansible | TASK [Copy SQL file to files directory] ***************************************************************************************************************************
+2021-06-21 09:08:35,714 p=11506 u=root n=ansible | ok: [localhost]
+2021-06-21 09:08:35,730 p=11506 u=root n=ansible | PLAY [Set host to ip mapping in /etc/hosts file of all the instances in the stack] ********************************************************************************
+2021-06-21 09:08:35,735 p=11506 u=root n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************
+2021-06-21 09:08:37,435 p=11506 u=root n=ansible | ok: [db01]
+2021-06-21 09:08:40,251 p=11506 u=root n=ansible | ok: [web01]
+2021-06-21 09:08:40,255 p=11506 u=root n=ansible | ok: [app01]
+2021-06-21 09:08:40,261 p=11506 u=root n=ansible | ok: [rmq01]
+2021-06-21 09:08:40,303 p=11506 u=root n=ansible | ok: [mc01]
+2021-06-21 09:08:40,316 p=11506 u=root n=ansible | TASK [Import VPC setup Variable] **********************************************************************************************************************************
+2021-06-21 09:08:40,365 p=11506 u=root n=ansible | ok: [web01]
+2021-06-21 09:08:40,390 p=11506 u=root n=ansible | ok: [app01]
+2021-06-21 09:08:40,413 p=11506 u=root n=ansible | ok: [rmq01]
+2021-06-21 09:08:40,414 p=11506 u=root n=ansible | ok: [mc01]
+2021-06-21 09:08:40,422 p=11506 u=root n=ansible | ok: [db01]
+2021-06-21 09:08:40,432 p=11506 u=root n=ansible | TASK [Update hosts file for all the hosts] ************************************************************************************************************************
+2021-06-21 09:08:41,048 p=11506 u=root n=ansible | ok: [db01]
+2021-06-21 09:08:41,608 p=11506 u=root n=ansible | ok: [rmq01]
+2021-06-21 09:08:41,688 p=11506 u=root n=ansible | ok: [app01]
+2021-06-21 09:08:41,690 p=11506 u=root n=ansible | ok: [mc01]
+2021-06-21 09:08:41,694 p=11506 u=root n=ansible | ok: [web01]
+2021-06-21 09:08:41,711 p=11506 u=root n=ansible | PLAY [Setup Mysql with accounts db and remote login] **************************************************************************************************************
+2021-06-21 09:08:41,725 p=11506 u=root n=ansible | TASK [Installing Mysql Service and dependencies] ******************************************************************************************************************
+2021-06-21 09:08:42,841 p=11506 u=root n=ansible | ok: [db01] => (item=mysql-server)
+2021-06-21 09:08:43,754 p=11506 u=root n=ansible | ok: [db01] => (item=mysql-client)
+2021-06-21 09:08:44,447 p=11506 u=root n=ansible | failed: [db01] (item=python-mysqldb) => {"ansible_loop_var": "item", "changed": false, "item": "python-mysqldb", "msg": "No package matching 'python-mysqldb' is available"}
+2021-06-21 09:08:45,374 p=11506 u=root n=ansible | ok: [db01] => (item=python3-mysqldb)
+2021-06-21 09:08:46,283 p=11506 u=root n=ansible | ok: [db01] => (item=libmysqlclient-dev)
+2021-06-21 09:08:46,285 p=11506 u=root n=ansible | ...ignoring
+2021-06-21 09:08:46,295 p=11506 u=root n=ansible | TASK [Start and enable mysql service] *****************************************************************************************************************************
+2021-06-21 09:08:47,051 p=11506 u=root n=ansible | ok: [db01]
+2021-06-21 09:08:47,061 p=11506 u=root n=ansible | TASK [creating mysql user] ****************************************************************************************************************************************
+2021-06-21 09:08:47,551 p=11506 u=root n=ansible | changed: [db01]
+2021-06-21 09:08:47,561 p=11506 u=root n=ansible | TASK [Creating accounts DB] ***************************************************************************************************************************************
+2021-06-21 09:08:48,014 p=11506 u=root n=ansible | ok: [db01]
+2021-06-21 09:08:48,025 p=11506 u=root n=ansible | TASK [Enable remote login to mysql svc] ***************************************************************************************************************************
+2021-06-21 09:08:48,449 p=11506 u=root n=ansible | ok: [db01]
+2021-06-21 09:08:48,466 p=11506 u=root n=ansible | PLAY [Deploy SQL file on accounts db] *****************************************************************************************************************************
+2021-06-21 09:08:48,479 p=11506 u=root n=ansible | TASK [Copy SQL to dbsrv] ******************************************************************************************************************************************
+2021-06-21 09:08:49,002 p=11506 u=root n=ansible | ok: [db01]
+2021-06-21 09:08:49,012 p=11506 u=root n=ansible | TASK [Restoring DB] ***********************************************************************************************************************************************
+2021-06-21 09:08:49,509 p=11506 u=root n=ansible | changed: [db01]
+2021-06-21 09:08:49,518 p=11506 u=root n=ansible | RUNNING HANDLER [Restart mysql] ***********************************************************************************************************************************
+2021-06-21 09:08:51,622 p=11506 u=root n=ansible | changed: [db01]
+2021-06-21 09:08:51,633 p=11506 u=root n=ansible | PLAY [Install Memcache, Start & enable SVC] ***********************************************************************************************************************
+2021-06-21 09:08:51,647 p=11506 u=root n=ansible | TASK [Install Memcache] *******************************************************************************************************************************************
+2021-06-21 09:08:53,790 p=11506 u=root n=ansible | ok: [mc01]
+2021-06-21 09:08:53,799 p=11506 u=root n=ansible | TASK [Start & Enable Memcache] ************************************************************************************************************************************
+2021-06-21 09:08:54,241 p=11506 u=root n=ansible | ok: [mc01]
+2021-06-21 09:08:54,250 p=11506 u=root n=ansible | TASK [Enable remote login to memecache] ***************************************************************************************************************************
+2021-06-21 09:08:54,529 p=11506 u=root n=ansible | ok: [mc01]
+2021-06-21 09:08:54,546 p=11506 u=root n=ansible | PLAY [Install & Setup RabbitMQ with user] *************************************************************************************************************************
+2021-06-21 09:08:54,560 p=11506 u=root n=ansible | TASK [Install Erlang Repository Package] **************************************************************************************************************************
+2021-06-21 09:08:56,110 p=11506 u=root n=ansible | ok: [rmq01]
+2021-06-21 09:08:56,119 p=11506 u=root n=ansible | TASK [Add an Erlang Solution public Key] **************************************************************************************************************************
+2021-06-21 09:08:56,985 p=11506 u=root n=ansible | ok: [rmq01]
+2021-06-21 09:08:56,994 p=11506 u=root n=ansible | TASK [Install Erlang] *********************************************************************************************************************************************
+2021-06-21 09:08:57,984 p=11506 u=root n=ansible | ok: [rmq01]
+2021-06-21 09:08:57,994 p=11506 u=root n=ansible | TASK [Add an Apt signing key, uses whichever key is at the URL] ***************************************************************************************************
+2021-06-21 09:08:59,178 p=11506 u=root n=ansible | ok: [rmq01]
+2021-06-21 09:08:59,187 p=11506 u=root n=ansible | TASK [Install Rabbit MQ] ******************************************************************************************************************************************
+2021-06-21 09:09:21,628 p=11506 u=root n=ansible | changed: [rmq01]
+2021-06-21 09:09:21,636 p=11506 u=root n=ansible | TASK [Start & Enable RMQ] *****************************************************************************************************************************************
+2021-06-21 09:09:22,094 p=11506 u=root n=ansible | ok: [rmq01]
+2021-06-21 09:09:22,103 p=11506 u=root n=ansible | TASK [Config setup] ***********************************************************************************************************************************************
+2021-06-21 09:09:22,788 p=11506 u=root n=ansible | changed: [rmq01]
+2021-06-21 09:09:22,797 p=11506 u=root n=ansible | TASK [rabbitmq_user] **********************************************************************************************************************************************
+2021-06-21 09:09:27,841 p=11506 u=root n=ansible | changed: [rmq01]
+2021-06-21 09:09:27,851 p=11506 u=root n=ansible | TASK [Enables the rabbitmq_management plugin] *********************************************************************************************************************
+2021-06-21 09:09:33,174 p=11506 u=root n=ansible | changed: [rmq01]
+2021-06-21 09:09:33,183 p=11506 u=root n=ansible | RUNNING HANDLER [Restart RMQ] *************************************************************************************************************************************
+2021-06-21 09:09:45,008 p=11506 u=root n=ansible | changed: [rmq01]
+2021-06-21 09:09:45,021 p=11506 u=root n=ansible | PLAY [Setup Tomcat8 & Deploy Artifact] ****************************************************************************************************************************
+2021-06-21 09:09:45,030 p=11506 u=root n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************
+2021-06-21 09:09:46,177 p=11506 u=root n=ansible | ok: [app01]
+2021-06-21 09:09:46,192 p=11506 u=root n=ansible | TASK [Install JDK on Ubuntu 18/20] ********************************************************************************************************************************
+2021-06-21 09:10:03,663 p=11506 u=root n=ansible | changed: [app01]
+2021-06-21 09:10:03,671 p=11506 u=root n=ansible | TASK [Download Tomcat Tar Ball/Binaries] **************************************************************************************************************************
+2021-06-21 09:10:06,662 p=11506 u=root n=ansible | changed: [app01]
+2021-06-21 09:10:06,672 p=11506 u=root n=ansible | TASK [Add tomcat group] *******************************************************************************************************************************************
+2021-06-21 09:10:07,132 p=11506 u=root n=ansible | changed: [app01]
+2021-06-21 09:10:07,142 p=11506 u=root n=ansible | TASK [Add tomcat user] ********************************************************************************************************************************************
+2021-06-21 09:10:07,692 p=11506 u=root n=ansible | changed: [app01]
+2021-06-21 09:10:07,702 p=11506 u=root n=ansible | TASK [file] *******************************************************************************************************************************************************
+2021-06-21 09:10:08,147 p=11506 u=root n=ansible | changed: [app01]
+2021-06-21 09:10:08,158 p=11506 u=root n=ansible | TASK [Extract tomcat] *********************************************************************************************************************************************
+2021-06-21 09:10:09,425 p=11506 u=root n=ansible | changed: [app01]
+2021-06-21 09:10:09,436 p=11506 u=root n=ansible | TASK [debug] ******************************************************************************************************************************************************
+2021-06-21 09:10:09,454 p=11506 u=root n=ansible | ok: [app01] => {
+    "msg": "apache-tomcat-8.5.37"
+}
+2021-06-21 09:10:09,472 p=11506 u=root n=ansible | TASK [Synchronize /tmp/tomcat8/tomcat_cont /usr/local/tomcat8.] ***************************************************************************************************
+2021-06-21 09:10:10,635 p=11506 u=root n=ansible | changed: [app01 -> app01]
+2021-06-21 09:10:10,644 p=11506 u=root n=ansible | TASK [Change ownership of /usr/local/tomcat8] *********************************************************************************************************************
+2021-06-21 09:10:10,977 p=11506 u=root n=ansible | changed: [app01]
+2021-06-21 09:10:10,987 p=11506 u=root n=ansible | TASK [Setup tomcat SVC file on ubuntu 16 and 18] ******************************************************************************************************************
+2021-06-21 09:10:11,516 p=11506 u=root n=ansible | changed: [app01]
+2021-06-21 09:10:11,525 p=11506 u=root n=ansible | TASK [just force systemd to reread configs (2.4 and above)] *******************************************************************************************************
+2021-06-21 09:10:12,539 p=11506 u=root n=ansible | ok: [app01]
+2021-06-21 09:10:12,549 p=11506 u=root n=ansible | TASK [Start & Enable tomcat SVC] **********************************************************************************************************************************
+2021-06-21 09:10:13,329 p=11506 u=root n=ansible | changed: [app01]
+2021-06-21 09:10:13,338 p=11506 u=root n=ansible | TASK [stat] *******************************************************************************************************************************************************
+2021-06-21 09:10:13,952 p=11506 u=root n=ansible | ok: [app01]
+2021-06-21 09:10:13,962 p=11506 u=root n=ansible | TASK [Stop tomcat8 svc] *******************************************************************************************************************************************
+2021-06-21 09:10:15,784 p=11506 u=root n=ansible | changed: [app01]
+2021-06-21 09:10:15,793 p=11506 u=root n=ansible | TASK [Archive ROOT dir with timestamp] ****************************************************************************************************************************
+2021-06-21 09:10:16,251 p=11506 u=root n=ansible | changed: [app01]
+2021-06-21 09:10:16,260 p=11506 u=root n=ansible | TASK [copy ROOT dir with old_ROOT name] ***************************************************************************************************************************
+2021-06-21 09:10:16,686 p=11506 u=root n=ansible | changed: [app01]
+2021-06-21 09:10:16,695 p=11506 u=root n=ansible | TASK [Delete current artifact] ************************************************************************************************************************************
+2021-06-21 09:10:16,990 p=11506 u=root n=ansible | changed: [app01] => (item=/usr/local/tomcat8/webapps/ROOT)
+2021-06-21 09:10:17,260 p=11506 u=root n=ansible | ok: [app01] => (item=/usr/local/tomcat8/webapps/ROOT.war)
+2021-06-21 09:10:17,270 p=11506 u=root n=ansible | TASK [Deploy vprofile artifact] ***********************************************************************************************************************************
+2021-06-21 09:10:20,543 p=11506 u=root n=ansible | changed: [app01]
+2021-06-21 09:10:20,553 p=11506 u=root n=ansible | TASK [Start tomcat8 svc] ******************************************************************************************************************************************
+2021-06-21 09:10:21,096 p=11506 u=root n=ansible | changed: [app01]
+2021-06-21 09:10:21,105 p=11506 u=root n=ansible | TASK [Wait until ROOT.war is extracted to ROOT directory] *********************************************************************************************************
+2021-06-21 09:10:23,743 p=11506 u=root n=ansible | ok: [app01]
+2021-06-21 09:10:23,752 p=11506 u=root n=ansible | TASK [Deploy web configuration file] ******************************************************************************************************************************
+2021-06-21 09:10:24,685 p=11506 u=root n=ansible | ok: [app01]
+2021-06-21 09:10:24,701 p=11506 u=root n=ansible | PLAY [Setup Nginx svc] ********************************************************************************************************************************************
+2021-06-21 09:10:24,714 p=11506 u=root n=ansible | TASK [Install nginx] **********************************************************************************************************************************************
+2021-06-21 09:10:39,256 p=11506 u=root n=ansible | changed: [web01]
+2021-06-21 09:10:39,265 p=11506 u=root n=ansible | TASK [Start & ENable Nginx] ***************************************************************************************************************************************
+2021-06-21 09:10:40,057 p=11506 u=root n=ansible | ok: [web01]
+2021-06-21 09:10:40,068 p=11506 u=root n=ansible | TASK [Disable Nginx default website] ******************************************************************************************************************************
+2021-06-21 09:10:40,549 p=11506 u=root n=ansible | changed: [web01]
+2021-06-21 09:10:40,558 p=11506 u=root n=ansible | TASK [Deploy web config file] *************************************************************************************************************************************
+2021-06-21 09:10:40,629 p=11506 u=root n=ansible | An exception occurred during task execution. To see the full traceback, use -vvv. The error was: If you are using a module and expect the file to exist on the remote, see the remote_src option
+2021-06-21 09:10:40,630 p=11506 u=root n=ansible | fatal: [web01]: FAILED! => {"changed": false, "msg": "Could not find or access 'templates/nginxvpro.j2'\nSearched in:\n\t/root/scripts/ansible-aws-vpc/provision-stack/templates/templates/nginxvpro.j2\n\t/root/scripts/ansible-aws-vpc/provision-stack/templates/nginxvpro.j2\n\t/root/scripts/ansible-aws-vpc/provision-stack/templates/templates/nginxvpro.j2\n\t/root/scripts/ansible-aws-vpc/provision-stack/templates/nginxvpro.j2 on the Ansible Controller.\nIf you are using a module and expect the file to exist on the remote, see the remote_src option"}
+2021-06-21 09:10:40,631 p=11506 u=root n=ansible | PLAY RECAP ********************************************************************************************************************************************************
+2021-06-21 09:10:40,631 p=11506 u=root n=ansible | app01                      : ok=25   changed=16   unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2021-06-21 09:10:40,631 p=11506 u=root n=ansible | db01                       : ok=11   changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=1   
+2021-06-21 09:10:40,632 p=11506 u=root n=ansible | localhost                  : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2021-06-21 09:10:40,632 p=11506 u=root n=ansible | mc01                       : ok=6    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2021-06-21 09:10:40,632 p=11506 u=root n=ansible | rmq01                      : ok=13   changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2021-06-21 09:10:40,632 p=11506 u=root n=ansible | web01                      : ok=6    changed=2    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2021-06-21 09:11:41,799 p=13186 u=root n=ansible | PLAY [Generate artifact, copy artifact & sql file to files directory] *********************************************************************************************
+2021-06-21 09:11:41,811 p=13186 u=root n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************
+2021-06-21 09:11:42,892 p=13186 u=root n=ansible | ok: [localhost]
+2021-06-21 09:11:42,907 p=13186 u=root n=ansible | TASK [Install  jdk, maven, git] ***********************************************************************************************************************************
+2021-06-21 09:11:44,891 p=13186 u=root n=ansible | ok: [localhost] => (item=git)
+2021-06-21 09:11:46,696 p=13186 u=root n=ansible | ok: [localhost] => (item=openjdk-8-jdk)
+2021-06-21 09:11:48,385 p=13186 u=root n=ansible | ok: [localhost] => (item=maven)
+2021-06-21 09:11:48,396 p=13186 u=root n=ansible | TASK [Clone source code from github] ******************************************************************************************************************************
+2021-06-21 09:11:49,074 p=13186 u=root n=ansible | ok: [localhost]
+2021-06-21 09:11:49,084 p=13186 u=root n=ansible | TASK [mvn install command to build artifact] **********************************************************************************************************************
+2021-06-21 09:11:49,098 p=13186 u=root n=ansible | skipping: [localhost]
+2021-06-21 09:11:49,107 p=13186 u=root n=ansible | TASK [Copy artifacts to files directory] **************************************************************************************************************************
+2021-06-21 09:11:49,980 p=13186 u=root n=ansible | ok: [localhost] => (item=/root/scripts/ansible-aws-vpc/provision-stack/Vprofile-repo/target/vprofile-v2.war)
+2021-06-21 09:11:49,990 p=13186 u=root n=ansible | TASK [Copy SQL file to files directory] ***************************************************************************************************************************
+2021-06-21 09:11:50,406 p=13186 u=root n=ansible | ok: [localhost]
+2021-06-21 09:11:50,423 p=13186 u=root n=ansible | PLAY [Set host to ip mapping in /etc/hosts file of all the instances in the stack] ********************************************************************************
+2021-06-21 09:11:50,427 p=13186 u=root n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************
+2021-06-21 09:11:52,165 p=13186 u=root n=ansible | ok: [db01]
+2021-06-21 09:11:54,734 p=13186 u=root n=ansible | ok: [web01]
+2021-06-21 09:11:54,797 p=13186 u=root n=ansible | ok: [app01]
+2021-06-21 09:11:54,899 p=13186 u=root n=ansible | ok: [rmq01]
+2021-06-21 09:11:54,916 p=13186 u=root n=ansible | ok: [mc01]
+2021-06-21 09:11:54,930 p=13186 u=root n=ansible | TASK [Import VPC setup Variable] **********************************************************************************************************************************
+2021-06-21 09:11:54,977 p=13186 u=root n=ansible | ok: [web01]
+2021-06-21 09:11:54,998 p=13186 u=root n=ansible | ok: [app01]
+2021-06-21 09:11:55,028 p=13186 u=root n=ansible | ok: [rmq01]
+2021-06-21 09:11:55,029 p=13186 u=root n=ansible | ok: [mc01]
+2021-06-21 09:11:55,037 p=13186 u=root n=ansible | ok: [db01]
+2021-06-21 09:11:55,047 p=13186 u=root n=ansible | TASK [Update hosts file for all the hosts] ************************************************************************************************************************
+2021-06-21 09:11:55,682 p=13186 u=root n=ansible | ok: [db01]
+2021-06-21 09:11:56,228 p=13186 u=root n=ansible | ok: [rmq01]
+2021-06-21 09:11:56,290 p=13186 u=root n=ansible | ok: [app01]
+2021-06-21 09:11:56,293 p=13186 u=root n=ansible | ok: [web01]
+2021-06-21 09:11:56,296 p=13186 u=root n=ansible | ok: [mc01]
+2021-06-21 09:11:56,313 p=13186 u=root n=ansible | PLAY [Setup Mysql with accounts db and remote login] **************************************************************************************************************
+2021-06-21 09:11:56,327 p=13186 u=root n=ansible | TASK [Installing Mysql Service and dependencies] ******************************************************************************************************************
+2021-06-21 09:11:57,436 p=13186 u=root n=ansible | ok: [db01] => (item=mysql-server)
+2021-06-21 09:11:58,351 p=13186 u=root n=ansible | ok: [db01] => (item=mysql-client)
+2021-06-21 09:11:59,035 p=13186 u=root n=ansible | failed: [db01] (item=python-mysqldb) => {"ansible_loop_var": "item", "changed": false, "item": "python-mysqldb", "msg": "No package matching 'python-mysqldb' is available"}
+2021-06-21 09:11:59,976 p=13186 u=root n=ansible | ok: [db01] => (item=python3-mysqldb)
+2021-06-21 09:12:00,910 p=13186 u=root n=ansible | ok: [db01] => (item=libmysqlclient-dev)
+2021-06-21 09:12:00,911 p=13186 u=root n=ansible | ...ignoring
+2021-06-21 09:12:00,921 p=13186 u=root n=ansible | TASK [Start and enable mysql service] *****************************************************************************************************************************
+2021-06-21 09:12:01,675 p=13186 u=root n=ansible | ok: [db01]
+2021-06-21 09:12:01,685 p=13186 u=root n=ansible | TASK [creating mysql user] ****************************************************************************************************************************************
+2021-06-21 09:12:02,186 p=13186 u=root n=ansible | changed: [db01]
+2021-06-21 09:12:02,196 p=13186 u=root n=ansible | TASK [Creating accounts DB] ***************************************************************************************************************************************
+2021-06-21 09:12:02,657 p=13186 u=root n=ansible | ok: [db01]
+2021-06-21 09:12:02,667 p=13186 u=root n=ansible | TASK [Enable remote login to mysql svc] ***************************************************************************************************************************
+2021-06-21 09:12:03,090 p=13186 u=root n=ansible | ok: [db01]
+2021-06-21 09:12:03,107 p=13186 u=root n=ansible | PLAY [Deploy SQL file on accounts db] *****************************************************************************************************************************
+2021-06-21 09:12:03,120 p=13186 u=root n=ansible | TASK [Copy SQL to dbsrv] ******************************************************************************************************************************************
+2021-06-21 09:12:03,628 p=13186 u=root n=ansible | ok: [db01]
+2021-06-21 09:12:03,637 p=13186 u=root n=ansible | TASK [Restoring DB] ***********************************************************************************************************************************************
+2021-06-21 09:12:04,139 p=13186 u=root n=ansible | changed: [db01]
+2021-06-21 09:12:04,148 p=13186 u=root n=ansible | RUNNING HANDLER [Restart mysql] ***********************************************************************************************************************************
+2021-06-21 09:12:07,161 p=13186 u=root n=ansible | changed: [db01]
+2021-06-21 09:12:07,172 p=13186 u=root n=ansible | PLAY [Install Memcache, Start & enable SVC] ***********************************************************************************************************************
+2021-06-21 09:12:07,185 p=13186 u=root n=ansible | TASK [Install Memcache] *******************************************************************************************************************************************
+2021-06-21 09:12:08,336 p=13186 u=root n=ansible | ok: [mc01]
+2021-06-21 09:12:08,345 p=13186 u=root n=ansible | TASK [Start & Enable Memcache] ************************************************************************************************************************************
+2021-06-21 09:12:08,784 p=13186 u=root n=ansible | ok: [mc01]
+2021-06-21 09:12:08,793 p=13186 u=root n=ansible | TASK [Enable remote login to memecache] ***************************************************************************************************************************
+2021-06-21 09:12:09,076 p=13186 u=root n=ansible | ok: [mc01]
+2021-06-21 09:12:09,093 p=13186 u=root n=ansible | PLAY [Install & Setup RabbitMQ with user] *************************************************************************************************************************
+2021-06-21 09:12:09,107 p=13186 u=root n=ansible | TASK [Install Erlang Repository Package] **************************************************************************************************************************
+2021-06-21 09:12:10,605 p=13186 u=root n=ansible | ok: [rmq01]
+2021-06-21 09:12:10,615 p=13186 u=root n=ansible | TASK [Add an Erlang Solution public Key] **************************************************************************************************************************
+2021-06-21 09:12:11,500 p=13186 u=root n=ansible | ok: [rmq01]
+2021-06-21 09:12:11,510 p=13186 u=root n=ansible | TASK [Install Erlang] *********************************************************************************************************************************************
+2021-06-21 09:12:12,512 p=13186 u=root n=ansible | ok: [rmq01]
+2021-06-21 09:12:12,521 p=13186 u=root n=ansible | TASK [Add an Apt signing key, uses whichever key is at the URL] ***************************************************************************************************
+2021-06-21 09:12:13,368 p=13186 u=root n=ansible | ok: [rmq01]
+2021-06-21 09:12:13,377 p=13186 u=root n=ansible | TASK [Install Rabbit MQ] ******************************************************************************************************************************************
+2021-06-21 09:12:15,292 p=13186 u=root n=ansible | ok: [rmq01]
+2021-06-21 09:12:15,301 p=13186 u=root n=ansible | TASK [Start & Enable RMQ] *****************************************************************************************************************************************
+2021-06-21 09:12:15,739 p=13186 u=root n=ansible | ok: [rmq01]
+2021-06-21 09:12:15,748 p=13186 u=root n=ansible | TASK [Config setup] ***********************************************************************************************************************************************
+2021-06-21 09:12:16,296 p=13186 u=root n=ansible | ok: [rmq01]
+2021-06-21 09:12:16,305 p=13186 u=root n=ansible | TASK [rabbitmq_user] **********************************************************************************************************************************************
+2021-06-21 09:12:19,289 p=13186 u=root n=ansible | ok: [rmq01]
+2021-06-21 09:12:19,298 p=13186 u=root n=ansible | TASK [Enables the rabbitmq_management plugin] *********************************************************************************************************************
+2021-06-21 09:12:21,555 p=13186 u=root n=ansible | ok: [rmq01]
+2021-06-21 09:12:21,572 p=13186 u=root n=ansible | PLAY [Setup Tomcat8 & Deploy Artifact] ****************************************************************************************************************************
+2021-06-21 09:12:21,580 p=13186 u=root n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************
+2021-06-21 09:12:22,453 p=13186 u=root n=ansible | ok: [app01]
+2021-06-21 09:12:22,467 p=13186 u=root n=ansible | TASK [Install JDK on Ubuntu 18/20] ********************************************************************************************************************************
+2021-06-21 09:12:24,382 p=13186 u=root n=ansible | ok: [app01]
+2021-06-21 09:12:24,390 p=13186 u=root n=ansible | TASK [Download Tomcat Tar Ball/Binaries] **************************************************************************************************************************
+2021-06-21 09:12:25,384 p=13186 u=root n=ansible | ok: [app01]
+2021-06-21 09:12:25,394 p=13186 u=root n=ansible | TASK [Add tomcat group] *******************************************************************************************************************************************
+2021-06-21 09:12:25,819 p=13186 u=root n=ansible | ok: [app01]
+2021-06-21 09:12:25,829 p=13186 u=root n=ansible | TASK [Add tomcat user] ********************************************************************************************************************************************
+2021-06-21 09:12:26,344 p=13186 u=root n=ansible | ok: [app01]
+2021-06-21 09:12:26,353 p=13186 u=root n=ansible | TASK [file] *******************************************************************************************************************************************************
+2021-06-21 09:12:26,788 p=13186 u=root n=ansible | ok: [app01]
+2021-06-21 09:12:26,798 p=13186 u=root n=ansible | TASK [Extract tomcat] *********************************************************************************************************************************************
+2021-06-21 09:12:28,260 p=13186 u=root n=ansible | ok: [app01]
+2021-06-21 09:12:28,270 p=13186 u=root n=ansible | TASK [debug] ******************************************************************************************************************************************************
+2021-06-21 09:12:28,289 p=13186 u=root n=ansible | ok: [app01] => {
+    "msg": "apache-tomcat-8.5.37"
+}
+2021-06-21 09:12:28,304 p=13186 u=root n=ansible | TASK [Synchronize /tmp/tomcat8/tomcat_cont /usr/local/tomcat8.] ***************************************************************************************************
+2021-06-21 09:12:28,809 p=13186 u=root n=ansible | changed: [app01 -> app01]
+2021-06-21 09:12:28,818 p=13186 u=root n=ansible | TASK [Change ownership of /usr/local/tomcat8] *********************************************************************************************************************
+2021-06-21 09:12:29,167 p=13186 u=root n=ansible | changed: [app01]
+2021-06-21 09:12:29,177 p=13186 u=root n=ansible | TASK [Setup tomcat SVC file on ubuntu 16 and 18] ******************************************************************************************************************
+2021-06-21 09:12:29,702 p=13186 u=root n=ansible | ok: [app01]
+2021-06-21 09:12:29,712 p=13186 u=root n=ansible | TASK [just force systemd to reread configs (2.4 and above)] *******************************************************************************************************
+2021-06-21 09:12:30,750 p=13186 u=root n=ansible | ok: [app01]
+2021-06-21 09:12:30,759 p=13186 u=root n=ansible | TASK [Start & Enable tomcat SVC] **********************************************************************************************************************************
+2021-06-21 09:12:31,194 p=13186 u=root n=ansible | ok: [app01]
+2021-06-21 09:12:31,203 p=13186 u=root n=ansible | TASK [stat] *******************************************************************************************************************************************************
+2021-06-21 09:12:31,663 p=13186 u=root n=ansible | ok: [app01]
+2021-06-21 09:12:31,672 p=13186 u=root n=ansible | TASK [Stop tomcat8 svc] *******************************************************************************************************************************************
+2021-06-21 09:12:32,951 p=13186 u=root n=ansible | changed: [app01]
+2021-06-21 09:12:32,961 p=13186 u=root n=ansible | TASK [Archive ROOT dir with timestamp] ****************************************************************************************************************************
+2021-06-21 09:12:36,095 p=13186 u=root n=ansible | changed: [app01]
+2021-06-21 09:12:36,106 p=13186 u=root n=ansible | TASK [copy ROOT dir with old_ROOT name] ***************************************************************************************************************************
+2021-06-21 09:12:36,623 p=13186 u=root n=ansible | changed: [app01]
+2021-06-21 09:12:36,632 p=13186 u=root n=ansible | TASK [Delete current artifact] ************************************************************************************************************************************
+2021-06-21 09:12:36,955 p=13186 u=root n=ansible | changed: [app01] => (item=/usr/local/tomcat8/webapps/ROOT)
+2021-06-21 09:12:37,230 p=13186 u=root n=ansible | changed: [app01] => (item=/usr/local/tomcat8/webapps/ROOT.war)
+2021-06-21 09:12:37,241 p=13186 u=root n=ansible | TASK [Deploy vprofile artifact] ***********************************************************************************************************************************
+2021-06-21 09:12:40,704 p=13186 u=root n=ansible | changed: [app01]
+2021-06-21 09:12:40,713 p=13186 u=root n=ansible | TASK [Start tomcat8 svc] ******************************************************************************************************************************************
+2021-06-21 09:12:41,275 p=13186 u=root n=ansible | changed: [app01]
+2021-06-21 09:12:41,284 p=13186 u=root n=ansible | TASK [Wait until ROOT.war is extracted to ROOT directory] *********************************************************************************************************
+2021-06-21 09:12:43,913 p=13186 u=root n=ansible | ok: [app01]
+2021-06-21 09:12:43,922 p=13186 u=root n=ansible | TASK [Deploy web configuration file] ******************************************************************************************************************************
+2021-06-21 09:12:44,825 p=13186 u=root n=ansible | ok: [app01]
+2021-06-21 09:12:44,841 p=13186 u=root n=ansible | PLAY [Setup Nginx svc] ********************************************************************************************************************************************
+2021-06-21 09:12:44,854 p=13186 u=root n=ansible | TASK [Install nginx] **********************************************************************************************************************************************
+2021-06-21 09:12:46,888 p=13186 u=root n=ansible | ok: [web01]
+2021-06-21 09:12:46,897 p=13186 u=root n=ansible | TASK [Start & ENable Nginx] ***************************************************************************************************************************************
+2021-06-21 09:12:47,669 p=13186 u=root n=ansible | ok: [web01]
+2021-06-21 09:12:47,678 p=13186 u=root n=ansible | TASK [Disable Nginx default website] ******************************************************************************************************************************
+2021-06-21 09:12:48,160 p=13186 u=root n=ansible | ok: [web01]
+2021-06-21 09:12:48,169 p=13186 u=root n=ansible | TASK [Deploy web config file] *************************************************************************************************************************************
+2021-06-21 09:12:49,088 p=13186 u=root n=ansible | changed: [web01]
+2021-06-21 09:12:49,098 p=13186 u=root n=ansible | TASK [Enable vproapp website] *************************************************************************************************************************************
+2021-06-21 09:12:49,580 p=13186 u=root n=ansible | changed: [web01]
+2021-06-21 09:12:49,589 p=13186 u=root n=ansible | RUNNING HANDLER [Restart Nginx] ***********************************************************************************************************************************
+2021-06-21 09:12:50,558 p=13186 u=root n=ansible | changed: [web01]
+2021-06-21 09:12:50,568 p=13186 u=root n=ansible | PLAY RECAP ********************************************************************************************************************************************************
+2021-06-21 09:12:50,568 p=13186 u=root n=ansible | app01                      : ok=25   changed=8    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2021-06-21 09:12:50,568 p=13186 u=root n=ansible | db01                       : ok=11   changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=1   
+2021-06-21 09:12:50,569 p=13186 u=root n=ansible | localhost                  : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2021-06-21 09:12:50,569 p=13186 u=root n=ansible | mc01                       : ok=6    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2021-06-21 09:12:50,569 p=13186 u=root n=ansible | rmq01                      : ok=12   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2021-06-21 09:12:50,569 p=13186 u=root n=ansible | web01                      : ok=9    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
